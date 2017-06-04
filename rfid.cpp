@@ -28,7 +28,7 @@ byte *CRfid::GetNewCardId( void )
       if( UUID_TAG_SIZE == p_mfrc522->uid.size ) 
       {
         // vérifie que ce ne soit pas la carte courante
-        if( 0 != memcmp(previous_uid, p_mfrc522->uid.uidByte, previous_uid) )
+        if( 0 != memcmp(previous_uid, p_mfrc522->uid.uidByte, UUID_TAG_SIZE) )
         {
           memcpy(previous_uid,p_mfrc522->uid.uidByte,UUID_TAG_SIZE);
           lo_new_card = previous_uid;
