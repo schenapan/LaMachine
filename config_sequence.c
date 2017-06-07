@@ -41,6 +41,40 @@ const sUidSeq sequence[SEQUENCE_SIZE] = {
   {SEQ_2_SIZE, seq_2_data}
 };
 
+/**
+ * Directory 0
+ */
+
+/**
+ * Sequence A
+ */
+
+const sResult r_seq_A = {
+  1,
+  0
+};
+
+const sSequence seq_A = {
+  &,
+  &r_seq_A
+};
+
+/**
+ * Full set of directory 0
+ */
+ 
+const sDirSequence seq_dir_0 = {
+  
+}
+
+/**
+ * Table of sequences by directory
+ */
+const sDirSequence *seq_dir[NB_DIRECTORY] = {
+
+};
+
+
 
 
 

@@ -6,17 +6,20 @@
 #include "config_hardware.h"
 #include "config_sequence.h"
 #include "rfid.hpp"
+#include "engine.hpp"
 
 
 /*************************************
  * Variables
  */
 unsigned long old_time; // hold previous time
-byte nuidPICC[UUID_TAG_SIZE];       // save previous rfid uid
-byte seq_number; // numero de sequence qui match
-byte seq_index; // progression dans la séquence
+
+sSeq in_seq;
+
 
 CRfid *p_rfid;
+CEngine p_engine(&seq_dir_1);
+
 
 /************************************
  * fonctions
@@ -44,14 +47,9 @@ void setup() {
   digitalWrite(RED_LED, LOW);
   digitalWrite(YELLOW_LED, LOW);
 
-
   // init variables
   old_time = millis();
-  for( byte loop=0; loop<UUID_TAG_SIZE; loop++ ) {
-    nuidPICC[loop]=0;
-  }
-  seq_number = 0xFF;
-  seq_index = 0xFF;
+  in_seq.nb = 0;
 }
 
 void loop() {
@@ -79,7 +77,15 @@ void loop() {
   read_nuidPICC = p_rfid->GetNewCardId();
   if( NULL != read_nuidPICC )
   {
-    printHex(read_nuidPICC,4);
+    printHex(read_nuidPICC,UUID_TAG_SIZE);
+
+    // ajoute le nouvel id
+    memcpy(in_seq.data[in_seq.nb], read_nuidPICC, UUID_TAG_SIZE);
+    in_seq.nb += 1;
+
+    // test si la nouvelle sequence est valide et retourne un résultat si il existe
+    
+
   }
   else
   {

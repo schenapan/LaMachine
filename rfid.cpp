@@ -36,6 +36,7 @@ byte *CRfid::GetNewCardId( void )
       }
     }
   }
+  
 
   return lo_new_card;
 }
