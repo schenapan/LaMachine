@@ -10,7 +10,7 @@
  * export table of sequence, indice of table is same as directory
  */
 #define NB_DIRECTORY  1
-extern const sDirSequence seq_dir[NB_DIRECTORY];
+extern const sDirSequence *seq_dir[NB_DIRECTORY];
 
 
 #endif // CONFIG_SEQUENCE_H

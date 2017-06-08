@@ -18,7 +18,7 @@ sSeq in_seq;
 
 
 CRfid *p_rfid;
-CEngine p_engine(&seq_dir_1);
+CEngine seq_engine(seq_dir[0]);
 
 
 /************************************
@@ -38,14 +38,12 @@ void setup() {
   // Init RFID module
   p_rfid = new CRfid(SS_PIN, RST_PIN);
 
-  pinMode(GREEN_LED, OUTPUT);
-  pinMode(RED_LED, OUTPUT);
-  pinMode(YELLOW_LED, OUTPUT);
-
-  // clear leds
-  digitalWrite(GREEN_LED, LOW);
-  digitalWrite(RED_LED, LOW);
-  digitalWrite(YELLOW_LED, LOW);
+  // Led
+  for( int loop=0; loop<NB_LED; loop++ )
+  {
+    pinMode(led_tbl[loop], OUTPUT); 
+    digitalWrite(led_tbl[loop], HIGH); 
+  }
 
   // init variables
   old_time = millis();
@@ -56,6 +54,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   unsigned long comp_time; 
   byte *read_nuidPICC;
+  sResult *seq_result;
 
   // 1second ticks
   comp_time = (unsigned long)( millis() - old_time );
@@ -80,12 +79,64 @@ void loop() {
     printHex(read_nuidPICC,UUID_TAG_SIZE);
 
     // ajoute le nouvel id
-    memcpy(in_seq.data[in_seq.nb], read_nuidPICC, UUID_TAG_SIZE);
-    in_seq.nb += 1;
+    if( in_seq.nb < MAX_SEQ_ITEM )
+    {
+      memcpy(in_seq.data[in_seq.nb], read_nuidPICC, UUID_TAG_SIZE);
+      in_seq.nb += 1;
+    }
 
     // test si la nouvelle sequence est valide et retourne un résultat si il existe
-    
+    if( true == seq_engine.IsSequenceValid( &in_seq, seq_result ) )
+    {
+      // a valid sequence is found 
+      // update LED
+      if( in_seq.nb <= NB_LED )
+      {
+        digitalWrite(led_tbl[in_seq.nb-1], LOW); 
+      }
 
+      //debug 
+      Serial.print("sequence nb : ");
+      printHex(&(in_seq.nb),1);
+      
+      // check if a result exist
+      if( NULL != seq_result )
+      {
+        // play sound
+
+        // switch to next directory
+        switch( seq_result->sound_directory_id )
+        {
+          case END_OF_SEQUENCE_CONTINUE_DIR_ID:
+          {
+            // end of current sequence with success
+            
+          }
+          break;
+
+          case END_OF_SEQUENCE_DISABLE_DIR_ID:
+          {
+            // disable machine final ending
+
+          }
+          break;
+
+          default:
+          {
+            // switch to new directory
+            if( seq_result->sound_directory_id < NB_DIRECTORY )
+            {
+              seq_engine.SetDirectorySequence(seq_dir[seq_result->sound_directory_id]);
+            }
+          }
+          break;
+        }
+      }
+    }
+    else
+    {
+      // invlid sequence
+    }
   }
   else
   {
@@ -102,24 +153,6 @@ void printHex(byte *buffer, byte bufferSize) {
     Serial.print(buffer[i], HEX);
   }
   Serial.println("");
-}
-
-/**
- * Helper to find a match inside a list of uid
- */
-bool isEqual(sUid *ip_const_uid, byte i_read_uid[4])
-{
-  bool lo_result = false;
-
-  for( int loop=0; loop<ip_const_uid->nb; loop++ )
-  {
-    if( 0 == memcmp(ip_const_uid->data, i_read_uid, 4) )
-    {
-      lo_result = true;
-    }
-  }
-
-  return lo_result;
 }
 
 

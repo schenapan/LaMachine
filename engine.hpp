@@ -6,10 +6,12 @@
 
 class CEngine {
   public:
-    CEngine( const sSequence *ip_seq );
+    CEngine( const sDirSequence *ip_seq );
+    void SetDirectorySequence( const sDirSequence *ip_seq );
+    bool IsSequenceValid( sSeq *p_in_seq, sResult *op_seq_result );
 
   private:
-    sSequence *p_seq;
+    sDirSequence *p_seq;
 };
 
 #endif // ENGINE_HPP

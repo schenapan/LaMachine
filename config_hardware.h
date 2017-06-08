@@ -11,9 +11,9 @@
 #define SS_PIN 10 
 
 // LEDs
-#define GREEN_LED 2
-#define RED_LED 7
-#define YELLOW_LED 8
+#define NB_LED  3
+extern unsigned char led_tbl[NB_LED];
+
 
 
 #endif // CONFIG_HARDWARE_H
