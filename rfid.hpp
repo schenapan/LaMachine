@@ -13,6 +13,8 @@ class CRfid {
   
   byte *GetNewCardId( void );
 
+  void ClearPrevious( void );
+
   private :
     MFRC522 *p_mfrc522;
     byte previous_uid[UUID_TAG_SIZE];

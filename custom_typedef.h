@@ -18,6 +18,12 @@ typedef struct {
   const unsigned char *p_uid[UUID_TAG_SIZE];
 }sItem;
 
+// define an items table
+typedef struct {
+  const unsigned char nb_items;
+  const sItem *p_items[];
+}sItemTbl;
+
 // define a sequence result
 typedef struct {
   const unsigned char sound_directory_id;
@@ -34,13 +40,13 @@ typedef struct {
 // define a config directory sequence
 typedef struct {
   const unsigned char nb_seq;
-  const sSequence *p_seq;
+  const sSequence *p_seq[];
 }sDirSequence;
 
 // define a type for storing sequence in progress
 typedef struct {
   unsigned char nb;
-  unsigned char data[MAX_SEQ_ITEM][UUID_TAG_SIZE];
+  sItem *p_item[MAX_SEQ_ITEM];
 }sSeq;
 
 

@@ -12,5 +12,10 @@
 #define NB_DIRECTORY  1
 extern const sDirSequence *seq_dir[NB_DIRECTORY];
 
+/**
+ * export table of items, simplify other process
+ */
+extern const sItemTbl items_table;
+
 
 #endif // CONFIG_SEQUENCE_H

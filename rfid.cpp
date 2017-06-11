@@ -10,7 +10,7 @@ CRfid::CRfid( byte chipSelectPin, byte resetPowerDownPin )
   p_mfrc522->PCD_DumpVersionToSerial(); // debug  // init led IO
 
   //
-  memset(previous_uid,0,UUID_TAG_SIZE);
+  ClearPrevious();
 
 }
 
@@ -39,5 +39,10 @@ byte *CRfid::GetNewCardId( void )
   
 
   return lo_new_card;
+}
+
+void CRfid::ClearPrevious( void )
+{
+  memset(previous_uid,0,UUID_TAG_SIZE);
 }
 
