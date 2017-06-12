@@ -43,7 +43,7 @@ const sResult result_seq_A = {
 };
  
 const sSequence seq_A[] = {
-  2, //ITEM_SEQ_A_SIZE,
+   ITEM_SEQ_A_SIZE,
   &items_seq_A,
   &result_seq_A,
 };
