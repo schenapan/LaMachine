@@ -1,6 +1,6 @@
-
-
 #include <SPI.h> 
+#include <SoftwareSerial.h>
+#include <MP3Player_KT403A.h>
 
 
 #include "config_hardware.h"
@@ -20,10 +20,15 @@ bool disable_timer;
 
 
 sSeq in_seq;
+unsigned char current_directory;
 
 
 CRfid *p_rfid;
 CEngine seq_engine(seq_dir[0],&items_table);
+
+// Note: You must define a SoftwareSerial class object that the name must be mp3, 
+//       but you can change the pin number according to the actual situation.
+SoftwareSerial mp3(MP3_SOFT_TX_PIN, MP3_SOFT_RX_PIN);
 
 
 /************************************
@@ -32,6 +37,9 @@ CEngine seq_engine(seq_dir[0],&items_table);
 
 void setup() {
   // put your setup code here, to run once:
+
+  // Init MP3
+  mp3.begin(MP3_UART_SPEED);
 
   // Init serial line for debug and needed by RFID library
   Serial.begin(9600);
@@ -53,9 +61,15 @@ void setup() {
   wait_timeout_flag = false;
   disable_machine = false;
   disable_timer = false;
+  current_directory = 1;
+
+  // configure MP3
+  //delay(100);
+  SelectPlayerDevice(MP3_DEFAULT_DEVICE);       // Select SD card as the player device.
+  SetVolume(MP3_DEFAULT_SOUND_LEVEL);                // Set the volume, the range is 0x00 to 0x1E.
+
 
   
-
 
   //debug display items table
 /*  
@@ -139,14 +153,42 @@ void loop() {
           // play sound
 
           Serial.println("Sequence Valide");
+
+          if( 0xFF != current_directory )
+          {
+            Serial.println("Play : ");
+            Serial.print("directory : ");
+            printHex(&current_directory,1);
+            Serial.print("sound : ");
+            printHex(&(seq_result->sound_id),1);
+            
+            SpecifyfolderPlay(current_directory, seq_result->sound_id);
+
+            // wait end of read
+            while(QueryPlayStatus() != 0);
+          }
   
           // switch to next directory
-          switch( seq_result->sound_directory_id )
+          switch( seq_result->next_sound_directory_id )
           {
+            case END_OF_SEQUENCE_RESTART_ID:
+            {
+              // end of current sequence with success
+              Serial.println("Finie et re-initialise la machine");
+
+              seq_engine.SetDirectorySequence(seq_dir[0]);
+              current_directory = 1;
+
+              wait_timeout_flag = true;
+            }
+            break;
+            
             case END_OF_SEQUENCE_CONTINUE_DIR_ID:
             {
               // end of current sequence with success
               Serial.println("Finie et continue dans le même repertoire");
+
+              current_directory = 0xFF;
 
               wait_timeout_flag = true;
             }
@@ -156,6 +198,8 @@ void loop() {
             {
               // disable machine final ending
               Serial.println("Finie et désactive la machine");
+
+              current_directory = 0xFF;
               
               disable_machine = true;
               wait_timeout_flag = true;
@@ -167,9 +211,10 @@ void loop() {
               // switch to new directory
               Serial.println("Finie et continue dans un nouveau répertoire");
               
-              if( seq_result->sound_directory_id < NB_DIRECTORY )
+              if( seq_result->next_sound_directory_id <= NB_DIRECTORY )
               {
-                seq_engine.SetDirectorySequence(seq_dir[seq_result->sound_directory_id]);
+                seq_engine.SetDirectorySequence(seq_dir[seq_result->next_sound_directory_id-1]);
+                current_directory = seq_result->next_sound_directory_id;
               }
 
               wait_timeout_flag = true;
@@ -193,7 +238,7 @@ void loop() {
   if( !disable_timer )
   {
     comp_time = (unsigned long)( millis() - old_time );
-    if( comp_time > 3000 )
+    if( comp_time > 5000 )
     {
       // desactive la machine
       clearSeqAndLeds();

@@ -8,8 +8,9 @@
 #define MAX_SEQ_ITEM  3
 
 // definit la fin de toute sequence a placer comme directory
-#define END_OF_SEQUENCE_CONTINUE_DIR_ID  0xFE
-#define END_OF_SEQUENCE_DISABLE_DIR_ID  0xFF
+#define END_OF_SEQUENCE_RESTART_ID        0xFD
+#define END_OF_SEQUENCE_CONTINUE_DIR_ID   0xFE
+#define END_OF_SEQUENCE_DISABLE_DIR_ID    0xFF
 
 
 // define an item
@@ -26,7 +27,7 @@ typedef struct {
 
 // define a sequence result
 typedef struct {
-  const unsigned char sound_directory_id;
+  const unsigned char next_sound_directory_id; // special define to stop machine
   const unsigned char sound_id;
 }sResult;
 
