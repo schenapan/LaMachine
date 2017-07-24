@@ -12,11 +12,13 @@
 #define END_OF_SEQUENCE_CONTINUE_DIR_ID   0xFE
 #define END_OF_SEQUENCE_DISABLE_DIR_ID    0xFF
 
+// define a tag
+typedef unsigned char t_tag[UUID_TAG_SIZE];
 
 // define an item
 typedef struct {
   const unsigned char nb_uid;
-  const unsigned char *p_uid[UUID_TAG_SIZE];
+  const t_tag *p_uid;
 }sItem;
 
 // define an items table

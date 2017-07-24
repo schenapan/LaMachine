@@ -14,6 +14,9 @@
 #define NB_LED  3
 extern unsigned char led_tbl[NB_LED];
 
+#define LED_LEVEL_ON  HIGH
+#define LED_LEVEL_OFF LOW
+
 // MP3
 #define MP3_SOFT_TX_PIN 2
 #define MP3_SOFT_RX_PIN 3
