@@ -35,26 +35,96 @@
 * define card uid
 */
 
-// Kjot
-const t_tag kjot_data[] = {
+// Varsel  
+const t_tag varsel_data[] = {
   TAG_1,
   TAG_2
 };
-const sItem item_kjot = { 2, kjot_data };
+const sItem item_varsel = { 2, varsel_data };
 
-// Bevegelse 
-const t_tag bevegelse_data[] = {
+// Ensomhet 
+const t_tag ensomhet_data[] = {
   TAG_3,
   TAG_4
 };
-const sItem item_bevegelse = { 2, bevegelse_data };
+const sItem item_ensomhet = { 2, ensomhet_data };
 
-// Varsel  
-const t_tag varsel_data[] = {
+// Styrke   
+const t_tag styrke_data[] = {
   TAG_5,
   TAG_6
 };
-const sItem item_varsel = { 2, varsel_data };
+const sItem item_styrke = { 2, styrke_data };
+
+// Stans   
+const t_tag stans_data[] = {
+  TAG_7,
+  TAG_8
+};
+const sItem item_stans = { 2, stans_data };
+
+// Storsaed
+const t_tag storsaed_data[] = {
+  TAG_9,
+  TAG_10
+};
+const sItem item_storsaed = { 2, storsaed_data };
+
+// Sterk 
+const t_tag sterk_data[] = {
+  TAG_11,
+  TAG_12
+};
+const sItem item_sterk = { 2, sterk_data };
+
+// Fjell
+const t_tag fjell_data[] = {
+  TAG_13,
+  TAG_14
+};
+const sItem item_fjell = { 2, fjell_data };
+
+// Grenselos
+const t_tag grenselos_data[] = {
+  TAG_15,
+  TAG_16
+};
+const sItem item_grenselos = { 2, grenselos_data };
+
+// Nod
+const t_tag nod_data[] = {
+  TAG_17,
+  TAG_18
+};
+const sItem item_nod = { 2, nod_data };
+
+// Herje
+const t_tag herje_data[] = {
+  TAG_19,
+  TAG_20
+};
+const sItem item_herje = { 2, herje_data };
+
+// Fornuft 
+const t_tag fornuft_data[] = {
+  TAG_21,
+  TAG_22
+};
+const sItem item_fornuft = { 2, fornuft_data };
+
+// Kjolig 
+const t_tag kjolig_data[] = {
+  TAG_23,
+  TAG_24
+};
+const sItem item_kjolig = { 2, kjolig_data };
+
+// Villskap 
+const t_tag villskap_data[] = {
+  TAG_23,
+  TAG_24
+};
+const sItem item_villskap = { 2, villskap_data };
 
 // Orga  
 const t_tag orga_data[] = {
@@ -99,8 +169,23 @@ const sItem item_x = {27,uid_x_data};
  * export table of items, simplify other process
  */
 const sItemTbl items_table = {
-  4,
-  { &item_kjot, &item_bevegelse, &item_varsel, &item_orga }
+  14,
+  { 
+    &item_varsel,
+    &item_ensomhet,
+    &item_styrke,
+    &item_stans,
+    &item_storsaed,
+    &item_sterk,
+    &item_fjell,
+    &item_grenselos,
+    &item_nod,
+    &item_herje,
+    &item_fornuft,
+    &item_kjolig,
+    &item_villskap,
+    &item_orga 
+  }
 };
 
 
@@ -133,9 +218,9 @@ const sSequence seq_orga[] = {
  */
 
 const sItem *items_seq_A[] = {
-  &item_kjot,
-  &item_bevegelse,
-  &item_varsel
+  &item_varsel,
+  &item_ensomhet,
+  &item_styrke
 };
 #define ITEM_SEQ_A_SIZE (sizeof(items_seq_A)/sizeof(sItem*))
 
@@ -155,9 +240,9 @@ const sSequence seq_A[] = {
  */
 
 const sItem *items_seq_B[] = {
-  &item_bevegelse,
-  &item_varsel,
-  &item_kjot
+    &item_stans,
+    &item_storsaed,
+    &item_sterk
 };
 #define ITEM_SEQ_B_SIZE (sizeof(items_seq_B)/sizeof(sItem*))
 
