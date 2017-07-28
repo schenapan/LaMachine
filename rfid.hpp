@@ -1,24 +1,21 @@
 #ifndef RFID_HPP
 #define RFID_HPP
 
-#include <MFRC522.h> 
+#include <MFRC522.h>
 #include "config_sequence.h"
-
 
 class CRfid {
 
-  public:
-  CRfid( byte chipSelectPin, byte resetPowerDownPin );
+public:
+    CRfid(byte chipSelectPin, byte resetPowerDownPin);
 
-  
-  byte *GetNewCardId( void );
+    byte *GetNewCardId(void);
 
-  void ClearPrevious( void );
+    void ClearPrevious(void);
 
-  private :
+private :
     MFRC522 *p_mfrc522;
     byte previous_uid[UUID_TAG_SIZE];
 };
-
 
 #endif // RFI_HPP

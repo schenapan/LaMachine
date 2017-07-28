@@ -1,6 +1,4 @@
-
 #include "config_sequence.h"
-
 
 #define TAG_1 {0x41, 0x6C, 0x04, 0x6B}
 #define TAG_2 {0x06, 0x7F, 0x9E, 0xBB}
@@ -30,137 +28,71 @@
 #define TAG_26 {0x60, 0xE8, 0x21, 0x83}
 #define TAG_CARTE {0x0C, 0x07, 0x8D, 0xAB}
 
-
 /******************************************************
 * define card uid
 */
 
 // Varsel  
-const t_tag varsel_data[] = {
-  TAG_1,
-  TAG_2
-};
-const sItem item_varsel = { 2, varsel_data };
+const t_tag varsel_data[] = {TAG_1, TAG_2};
+const sItem item_varsel = {2, varsel_data};
 
 // Ensomhet 
-const t_tag ensomhet_data[] = {
-  TAG_3,
-  TAG_4
-};
-const sItem item_ensomhet = { 2, ensomhet_data };
+const t_tag ensomhet_data[] = {TAG_3, TAG_4};
+const sItem item_ensomhet = {2, ensomhet_data};
 
 // Styrke   
-const t_tag styrke_data[] = {
-  TAG_5,
-  TAG_6
-};
-const sItem item_styrke = { 2, styrke_data };
+const t_tag styrke_data[] = {TAG_5, TAG_6};
+const sItem item_styrke = {2, styrke_data};
 
 // Stans   
-const t_tag stans_data[] = {
-  TAG_7,
-  TAG_8
-};
-const sItem item_stans = { 2, stans_data };
+const t_tag stans_data[] = {TAG_7, TAG_8};
+const sItem item_stans = {2, stans_data};
 
 // Storsaed
-const t_tag storsaed_data[] = {
-  TAG_9,
-  TAG_10
-};
-const sItem item_storsaed = { 2, storsaed_data };
+const t_tag storsaed_data[] = {TAG_9, TAG_10};
+const sItem item_storsaed = {2, storsaed_data};
 
 // Sterk 
-const t_tag sterk_data[] = {
-  TAG_11,
-  TAG_12
-};
-const sItem item_sterk = { 2, sterk_data };
+const t_tag sterk_data[] = {TAG_11, TAG_12};
+const sItem item_sterk = {2, sterk_data};
 
 // Fjell
-const t_tag fjell_data[] = {
-  TAG_13,
-  TAG_14
-};
-const sItem item_fjell = { 2, fjell_data };
+const t_tag fjell_data[] = {TAG_13, TAG_14};
+const sItem item_fjell = {2, fjell_data};
 
 // Grenselos
-const t_tag grenselos_data[] = {
-  TAG_15,
-  TAG_16
-};
-const sItem item_grenselos = { 2, grenselos_data };
+const t_tag grenselos_data[] = {TAG_15, TAG_16};
+const sItem item_grenselos = {2, grenselos_data};
 
 // Nod
-const t_tag nod_data[] = {
-  TAG_17,
-  TAG_18
-};
-const sItem item_nod = { 2, nod_data };
+const t_tag nod_data[] = {TAG_17, TAG_18};
+const sItem item_nod = {2, nod_data};
 
 // Herje
-const t_tag herje_data[] = {
-  TAG_19,
-  TAG_20
-};
-const sItem item_herje = { 2, herje_data };
+const t_tag herje_data[] = {TAG_19, TAG_20};
+const sItem item_herje = {2, herje_data};
 
 // Fornuft 
-const t_tag fornuft_data[] = {
-  TAG_21,
-  TAG_22
-};
-const sItem item_fornuft = { 2, fornuft_data };
+const t_tag fornuft_data[] = {TAG_21, TAG_22};
+const sItem item_fornuft = {2, fornuft_data};
 
 // Kjolig 
-const t_tag kjolig_data[] = {
-  TAG_23,
-  TAG_24
-};
-const sItem item_kjolig = { 2, kjolig_data };
+const t_tag kjolig_data[] = {TAG_23, TAG_24};
+const sItem item_kjolig = {2, kjolig_data};
 
 // Villskap 
-const t_tag villskap_data[] = {
-  TAG_23,
-  TAG_24
-};
-const sItem item_villskap = { 2, villskap_data };
+const t_tag villskap_data[] = {TAG_23, TAG_24};
+const sItem item_villskap = {2, villskap_data};
 
 // Orga  
-const t_tag orga_data[] = {
-  TAG_CARTE
-};
-const sItem item_orga = { 2, orga_data };
+const t_tag orga_data[] = {TAG_CARTE};
+const sItem item_orga = {2, orga_data};
 
 /*
 const t_tag uid_x_data[] = {
-  TAG_1,
-  TAG_2,
-  TAG_3,
-  TAG_4,
-  TAG_5,
-  TAG_6,
-  TAG_7,
-  TAG_8,
-  TAG_9,
-  TAG_10,
-  TAG_11,
-  TAG_12,
-  TAG_13,
-  TAG_14,
-  TAG_15,
-  TAG_16,
-  TAG_17,
-  TAG_18,
-  TAG_19,
-  TAG_20,
-  TAG_21,
-  TAG_22,
-  TAG_23,
-  TAG_24,
-  TAG_25,
-  TAG_26,
-  TAG_CARTE
+  TAG_1,  TAG_2,  TAG_3,  TAG_4,  TAG_5,  TAG_6,  TAG_7,  TAG_8,  TAG_9,  TAG_10,  TAG_11,  TAG_12,  TAG_13,
+  TAG_14,  TAG_15,  TAG_16,  TAG_17,  TAG_18,  TAG_19,  TAG_20,  TAG_21,  TAG_22,  TAG_23,  TAG_24,  TAG_25,
+  TAG_26,  TAG_CARTE
 };
 const sItem item_x = {27,uid_x_data};
 */
@@ -169,23 +101,23 @@ const sItem item_x = {27,uid_x_data};
  * export table of items, simplify other process
  */
 const sItemTbl items_table = {
-  14,
-  { 
-    &item_varsel,
-    &item_ensomhet,
-    &item_styrke,
-    &item_stans,
-    &item_storsaed,
-    &item_sterk,
-    &item_fjell,
-    &item_grenselos,
-    &item_nod,
-    &item_herje,
-    &item_fornuft,
-    &item_kjolig,
-    &item_villskap,
-    &item_orga 
-  }
+        14,
+        {
+                &item_varsel,
+                &item_ensomhet,
+                &item_styrke,
+                &item_stans,
+                &item_storsaed,
+                &item_sterk,
+                &item_fjell,
+                &item_grenselos,
+                &item_nod,
+                &item_herje,
+                &item_fornuft,
+                &item_kjolig,
+                &item_villskap,
+                &item_orga
+        }
 };
 
 
@@ -194,19 +126,19 @@ const sItemTbl items_table = {
  */
 
 const sItem *items_seq_orga[] = {
-  &item_orga
+        &item_orga
 };
 #define ITEM_SEQ_ORGA_SIZE (sizeof(items_seq_orga)/sizeof(sItem*))
 
 const sResult result_seq_orga = {
-  END_OF_SEQUENCE_RESTART_ID, // Directory destination APRES avoir joué le son
-  100  // Son à jouer
+        END_OF_SEQUENCE_RESTART_ID, // Directory destination APRES avoir joué le son
+        100  // Son à jouer
 };
 
 const sSequence seq_orga[] = {
-   ITEM_SEQ_ORGA_SIZE,
-  &items_seq_orga,
-  &result_seq_orga,
+        ITEM_SEQ_ORGA_SIZE,
+        &items_seq_orga,
+        &result_seq_orga,
 };
 
 /**
@@ -218,21 +150,21 @@ const sSequence seq_orga[] = {
  */
 
 const sItem *items_seq_A[] = {
-  &item_varsel,
-  &item_ensomhet,
-  &item_styrke
+        &item_varsel,
+        &item_ensomhet,
+        &item_styrke
 };
 #define ITEM_SEQ_A_SIZE (sizeof(items_seq_A)/sizeof(sItem*))
 
 const sResult result_seq_A = {
-  1, // Directory destination APRES avoir joué le son
-  1  // Son à jouer
+        1, // Directory destination APRES avoir joué le son
+        1  // Son à jouer
 };
- 
+
 const sSequence seq_A[] = {
-   ITEM_SEQ_A_SIZE,
-  &items_seq_A,
-  &result_seq_A,
+        ITEM_SEQ_A_SIZE,
+        &items_seq_A,
+        &result_seq_A,
 };
 
 /**
@@ -240,30 +172,30 @@ const sSequence seq_A[] = {
  */
 
 const sItem *items_seq_B[] = {
-    &item_stans,
-    &item_storsaed,
-    &item_sterk
+        &item_stans,
+        &item_storsaed,
+        &item_sterk
 };
 #define ITEM_SEQ_B_SIZE (sizeof(items_seq_B)/sizeof(sItem*))
 
 const sResult result_seq_B = {
-  2, // Directory destination APRES avoir joué le son
-  2  //Son à jouer
+        2, // Directory destination APRES avoir joué le son
+        2  //Son à jouer
 };
 
 const sSequence seq_B[] = {
-   ITEM_SEQ_B_SIZE,
-  &items_seq_B,
-  &result_seq_B,
+        ITEM_SEQ_B_SIZE,
+        &items_seq_B,
+        &result_seq_B,
 };
- 
+
 /**
  * Full set of directory 1
  */
- 
+
 const sDirSequence seq_dir_0 = {
-  3,
-  { &seq_A, &seq_B, &seq_orga }
+        3,
+        {&seq_A, &seq_B, &seq_orga}
 };
 
 /**
@@ -275,14 +207,14 @@ const sDirSequence seq_dir_0 = {
  */
 
 const sResult result_seq_1_A = {
-  END_OF_SEQUENCE_RESTART_ID,
-  1
+        END_OF_SEQUENCE_RESTART_ID,
+        1
 };
- 
+
 const sSequence seq_1_A[] = {
-   ITEM_SEQ_A_SIZE,
-  &items_seq_A,
-  &result_seq_1_A,
+        ITEM_SEQ_A_SIZE,
+        &items_seq_A,
+        &result_seq_1_A,
 };
 
 /**
@@ -290,31 +222,31 @@ const sSequence seq_1_A[] = {
  */
 
 const sResult result_seq_1_B = {
-  END_OF_SEQUENCE_RESTART_ID,
-  2
+        END_OF_SEQUENCE_RESTART_ID,
+        2
 };
 
 const sSequence seq_1_B[] = {
-   ITEM_SEQ_B_SIZE,
-  &items_seq_B,
-  &result_seq_1_B,
+        ITEM_SEQ_B_SIZE,
+        &items_seq_B,
+        &result_seq_1_B,
 };
- 
+
 /**
  * Full set of directory 1
  */
- 
+
 const sDirSequence seq_dir_1 = {
-  3,
-  {&seq_1_A,&seq_1_B, &seq_orga}
+        3,
+        {&seq_1_A, &seq_1_B, &seq_orga}
 };
 
 /**
  * Table of sequences by directory
  */
 const sDirSequence *seq_dir[NB_DIRECTORY] = {
-  &seq_dir_0,
-  &seq_dir_1,
+        &seq_dir_0,
+        &seq_dir_1,
 };
 
 

@@ -17,41 +17,40 @@ typedef unsigned char t_tag[UUID_TAG_SIZE];
 
 // define an item
 typedef struct {
-  const unsigned char nb_uid;
-  const t_tag *p_uid;
-}sItem;
+    const unsigned char nb_uid;
+    const t_tag *p_uid;
+} sItem;
 
 // define an items table
 typedef struct {
-  const unsigned char nb_items;
-  const sItem *p_items[];
-}sItemTbl;
+    const unsigned char nb_items;
+    const sItem *p_items[];
+} sItemTbl;
 
 // define a sequence result
 typedef struct {
-  const unsigned char next_sound_directory_id; // special define to stop machine
-  const unsigned char sound_id;
-}sResult;
+    const unsigned char next_sound_directory_id; // special define to stop machine
+    const unsigned char sound_id;
+} sResult;
 
 // define a config sequence
 typedef struct {
-  const unsigned char nb_item;
-  const sItem **p_items;
-  const sResult *p_result;
-}sSequence;
+    const unsigned char nb_item;
+    const sItem **p_items;
+    const sResult *p_result;
+} sSequence;
 
 // define a config directory sequence
 typedef struct {
-  const unsigned char nb_seq;
-  const sSequence *p_seq[];
-}sDirSequence;
+    const unsigned char nb_seq;
+    const sSequence *p_seq[];
+} sDirSequence;
 
 // define a type for storing sequence in progress
 typedef struct {
-  unsigned char nb;
-  sItem *p_item[MAX_SEQ_ITEM];
-}sSeq;
-
+    unsigned char nb;
+    sItem *p_item[MAX_SEQ_ITEM];
+} sSeq;
 
 
 #endif // CUSTOM_TYPEDEF_H
