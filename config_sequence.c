@@ -120,7 +120,6 @@ const sItemTbl items_table = {
         }
 };
 
-
 /**
  * Sequence Orga
  */
@@ -141,112 +140,115 @@ const sSequence seq_orga[] = {
         &result_seq_orga,
 };
 
-/**
- * Directory 1
- */
-
-/**
- * Sequence A
- */
-
-const sItem *items_seq_A[] = {
+// Séquence Initiation
+const sItem *items_seq_initiation[] = {
         &item_varsel,
-        &item_ensomhet,
-        &item_styrke
+        &item_ensomhet
 };
-#define ITEM_SEQ_A_SIZE (sizeof(items_seq_A)/sizeof(sItem*))
+#define ITEM_SEQ_INITIATION_SIZE (sizeof(items_seq_initiation)/sizeof(sItem*))
 
-const sResult result_seq_A = {
-        1, // Directory destination APRES avoir joué le son
+const sResult result_seq_initiation = {
+        END_OF_SEQUENCE_CONTINUE_DIR_ID, // Directory destination APRES avoir joué le son
         1  // Son à jouer
 };
 
-const sSequence seq_A[] = {
-        ITEM_SEQ_A_SIZE,
-        &items_seq_A,
-        &result_seq_A,
+const sSequence seq_initiation[] = {
+        ITEM_SEQ_INITIATION_SIZE,
+        &items_seq_initiation,
+        &result_seq_initiation,
 };
+
+// Séquence Renforcement
+const sItem *items_seq_renforcement[] = {
+        &item_styrke,
+        &item_nod
+};
+#define ITEM_SEQ_RENFORCEMENT_SIZE (sizeof(items_seq_renforcement)/sizeof(sItem*))
 
 /**
- * Sequence B
+ * Directory 1 : Niveau d'énargie faible
  */
 
-const sItem *items_seq_B[] = {
-        &item_stans,
-        &item_storsaed,
-        &item_sterk
-};
-#define ITEM_SEQ_B_SIZE (sizeof(items_seq_B)/sizeof(sItem*))
-
-const sResult result_seq_B = {
+// Directory 1 => Séquence Renforcement
+const sResult result_seq_renforcement_1 = {
         2, // Directory destination APRES avoir joué le son
-        2  //Son à jouer
+        2  // Son à jouer
 };
 
-const sSequence seq_B[] = {
-        ITEM_SEQ_B_SIZE,
-        &items_seq_B,
-        &result_seq_B,
+const sSequence seq_renforcement_1[] = {
+        ITEM_SEQ_RENFORCEMENT_SIZE,
+        &items_seq_renforcement,
+        &result_seq_renforcement_1,
 };
 
-/**
- * Full set of directory 1
- */
-
-const sDirSequence seq_dir_0 = {
-        3,
-        {&seq_A, &seq_B, &seq_orga}
-};
-
-/**
- * Directory 2
- */
-
-/**
- * Sequence 1_A
- */
-
-const sResult result_seq_1_A = {
-        END_OF_SEQUENCE_RESTART_ID,
-        1
-};
-
-const sSequence seq_1_A[] = {
-        ITEM_SEQ_A_SIZE,
-        &items_seq_A,
-        &result_seq_1_A,
-};
-
-/**
- * Sequence 1_B
- */
-
-const sResult result_seq_1_B = {
-        END_OF_SEQUENCE_RESTART_ID,
-        2
-};
-
-const sSequence seq_1_B[] = {
-        ITEM_SEQ_B_SIZE,
-        &items_seq_B,
-        &result_seq_1_B,
-};
-
-/**
- * Full set of directory 1
- */
-
+//Liste des séquences du directory 1
 const sDirSequence seq_dir_1 = {
         3,
-        {&seq_1_A, &seq_1_B, &seq_orga}
+        {
+                &seq_initiation,
+                &seq_renforcement_1,
+                &seq_orga
+        }
+};
+
+/**
+ * Directory 2 : Niveau d'énargie moyen
+ */
+
+// Directory 2 => Séquence Renforcement
+const sResult result_seq_renforcement_2 = {
+        3, // Directory destination APRES avoir joué le son
+        2  // Son à jouer
+};
+
+const sSequence seq_renforcement_2[] = {
+        ITEM_SEQ_RENFORCEMENT_SIZE,
+        &items_seq_renforcement,
+        &result_seq_renforcement_2,
+};
+
+//Liste des séquences du directory 2
+const sDirSequence seq_dir_2 = {
+        3,
+        {
+                &seq_initiation,
+                &seq_renforcement_2,
+                &seq_orga
+        }
+};
+
+/**
+ * Directory 3 : Niveau d'énargie moyen
+ */
+
+// Directory 3 => Séquence Renforcement
+const sResult result_seq_renforcement_2 = {
+        END_OF_SEQUENCE_CONTINUE_DIR_ID, // Directory destination APRES avoir joué le son
+        2  // Son à jouer
+};
+
+const sSequence seq_renforcement_3[] = {
+        ITEM_SEQ_RENFORCEMENT_SIZE,
+        &items_seq_renforcement,
+        &result_seq_renforcement_3,
+};
+
+//Liste des séquences du directory 2
+const sDirSequence seq_dir_3 = {
+        3,
+        {
+                &seq_initiation,
+                &seq_renforcement_3,
+                &seq_orga
+        }
 };
 
 /**
  * Table of sequences by directory
  */
 const sDirSequence *seq_dir[NB_DIRECTORY] = {
-        &seq_dir_0,
         &seq_dir_1,
+        &seq_dir_2,
 };
 
 
