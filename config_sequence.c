@@ -86,7 +86,7 @@ const sItem item_villskap = {2, villskap_data};
 
 // Orga  
 const t_tag orga_data[] = {TAG_CARTE};
-const sItem item_orga = {2, orga_data};
+const sItem item_orga = {1, orga_data};
 
 /*
 const t_tag uid_x_data[] = {
