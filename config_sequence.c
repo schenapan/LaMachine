@@ -32,61 +32,61 @@
 * define card uid
 */
 
-// Varsel  
-const t_tag varsel_data[] = {TAG_1, TAG_2};
-const sItem item_varsel = {2, varsel_data};
+// Varsel
+const t_tag varselTags[] = {TAG_1, TAG_2};
+const sItem varselRune = {2, varselTags};
 
-// Ensomhet 
-const t_tag ensomhet_data[] = {TAG_3, TAG_4};
-const sItem item_ensomhet = {2, ensomhet_data};
+// Ensomhet
+const t_tag ensomhetTags[] = {TAG_3, TAG_4};
+const sItem ensomhetRune = {2, ensomhetTags};
 
-// Styrke   
-const t_tag styrke_data[] = {TAG_5, TAG_6};
-const sItem item_styrke = {2, styrke_data};
+// Styrke
+const t_tag styrkeTags[] = {TAG_5, TAG_6};
+const sItem styrkeRune = {2, styrkeTags};
 
-// Stans   
-const t_tag stans_data[] = {TAG_7, TAG_8};
-const sItem item_stans = {2, stans_data};
+// Stans
+const t_tag stansTags[] = {TAG_7, TAG_8};
+const sItem stansRune = {2, stansTags};
 
 // Storsaed
-const t_tag storsaed_data[] = {TAG_9, TAG_10};
-const sItem item_storsaed = {2, storsaed_data};
+const t_tag storsaedTags[] = {TAG_9, TAG_10};
+const sItem storsaedRune = {2, storsaedTags};
 
-// Sterk 
-const t_tag sterk_data[] = {TAG_11, TAG_12};
-const sItem item_sterk = {2, sterk_data};
+// Sterk
+const t_tag sterkTags[] = {TAG_11, TAG_12};
+const sItem sterkRune = {2, sterkTags};
 
 // Fjell
-const t_tag fjell_data[] = {TAG_13, TAG_14};
-const sItem item_fjell = {2, fjell_data};
+const t_tag fjellTags[] = {TAG_13, TAG_14};
+const sItem fjellRune = {2, fjellTags};
 
 // Grenselos
-const t_tag grenselos_data[] = {TAG_15, TAG_16};
-const sItem item_grenselos = {2, grenselos_data};
+const t_tag grenselosTags[] = {TAG_15, TAG_16};
+const sItem grenselosRune = {2, grenselosTags};
 
 // Nod
-const t_tag nod_data[] = {TAG_17, TAG_18};
-const sItem item_nod = {2, nod_data};
+const t_tag nodTags[] = {TAG_17, TAG_18};
+const sItem nodRune = {2, nodTags};
 
 // Herje
-const t_tag herje_data[] = {TAG_19, TAG_20};
-const sItem item_herje = {2, herje_data};
+const t_tag herjeTags[] = {TAG_19, TAG_20};
+const sItem herjeRune = {2, herjeTags};
 
-// Fornuft 
-const t_tag fornuft_data[] = {TAG_21, TAG_22};
-const sItem item_fornuft = {2, fornuft_data};
+// Fornuft
+const t_tag fornuftTags[] = {TAG_21, TAG_22};
+const sItem fornuftRune = {2, fornuftTags};
 
-// Kjolig 
-const t_tag kjolig_data[] = {TAG_23, TAG_24};
-const sItem item_kjolig = {2, kjolig_data};
+// Kjolig
+const t_tag kjoligTags[] = {TAG_23, TAG_24};
+const sItem kjoligRune = {2, kjoligTags};
 
-// Villskap 
-const t_tag villskap_data[] = {TAG_23, TAG_24};
-const sItem item_villskap = {2, villskap_data};
+// Villskap
+const t_tag villskapTags[] = {TAG_23, TAG_24};
+const sItem villskapRune = {2, villskapTags};
 
-// Orga  
-const t_tag orga_data[] = {TAG_CARTE};
-const sItem item_orga = {1, orga_data};
+// Orga
+const t_tag orgaTags[] = {TAG_CARTE};
+const sItem orgaRune = {1, orgaTags};
 
 /*
 const t_tag uid_x_data[] = {
@@ -103,158 +103,79 @@ const sItem item_x = {27,uid_x_data};
 const sItemTbl items_table = {
         14,
         {
-                &item_varsel,
-                &item_ensomhet,
-                &item_styrke,
-                &item_stans,
-                &item_storsaed,
-                &item_sterk,
-                &item_fjell,
-                &item_grenselos,
-                &item_nod,
-                &item_herje,
-                &item_fornuft,
-                &item_kjolig,
-                &item_villskap,
-                &item_orga
+                &varselRune,
+                &ensomhetRune,
+                &styrkeRune,
+                &stansRune,
+                &storsaedRune,
+                &sterkRune,
+                &fjellRune,
+                &grenselosRune,
+                &nodRune,
+                &herjeRune,
+                &fornuftRune,
+                &kjoligRune,
+                &villskapRune,
+                &orgaRune
         }
 };
 
-/**
- * Sequence Orga
- */
-
-const sItem *items_seq_orga[] = {
-        &item_orga
-};
-#define ITEM_SEQ_ORGA_SIZE (sizeof(items_seq_orga)/sizeof(sItem*))
-
-const sResult result_seq_orga = {
-        END_OF_SEQUENCE_RESTART_ID, // Directory destination APRES avoir joué le son
-        100  // Son à jouer
-};
-
-const sSequence seq_orga[] = {
-        ITEM_SEQ_ORGA_SIZE,
-        &items_seq_orga,
-        &result_seq_orga,
-};
+// Séquence Orga
+const sItem *seqOrgaRunes[] = { &orgaRune };
+#define SEQ_ORGA_RUNES_SIZE (sizeof(seqOrgaRunes)/sizeof(sItem*))
+// Séquence Orga => All Dir
+const sResult seqOrgaResult = { END_OF_SEQUENCE_RESTART_ID /* Dir sortie */, 100  /* Son */ };
+const sSequence seqOrga[] = { SEQ_ORGA_RUNES_SIZE, &seqOrgaRunes, &seqOrgaResult };
 
 // Séquence Initiation
-const sItem *items_seq_initiation[] = {
-        &item_varsel,
-        &item_ensomhet
-};
-#define ITEM_SEQ_INITIATION_SIZE (sizeof(items_seq_initiation)/sizeof(sItem*))
-
-const sResult result_seq_initiation = {
-        END_OF_SEQUENCE_CONTINUE_DIR_ID, // Directory destination APRES avoir joué le son
-        1  // Son à jouer
-};
-
-const sSequence seq_initiation[] = {
-        ITEM_SEQ_INITIATION_SIZE,
-        &items_seq_initiation,
-        &result_seq_initiation,
-};
+const sItem *seqInitiationRunes[] = { &varselRune, &ensomhetRune};
+#define SEQ_INITIATION_RUNES_SIZE (sizeof(seqInitiationRunes)/sizeof(sItem*))
+// Séquence Initiation => All Dir
+const sResult seqInitiationResult = { END_OF_SEQUENCE_CONTINUE_DIR_ID /* Dir sortie */, 1  /* Son */ };
+const sSequence seqInitiation[] = { SEQ_INITIATION_RUNES_SIZE, &seqInitiationRunes, &seqInitiationResult };
 
 // Séquence Renforcement
-const sItem *items_seq_renforcement[] = {
-        &item_styrke,
-        &item_nod
-};
-#define ITEM_SEQ_RENFORCEMENT_SIZE (sizeof(items_seq_renforcement)/sizeof(sItem*))
+const sItem *seqRenforcementRunes[] = { &styrkeRune, &nodRune };
+#define SEQ_RENFORCEMENT_RUNES_SIZE (sizeof(seqRenforcementRunes)/sizeof(sItem*))
+// Séquence Renforcement => Directory 1
+const sResult seqRenforcementResultDir1 = { 2 /* Dir sortie */, 2  /* Son */ };
+const sSequence seqRenforcementDir1[] = { SEQ_RENFORCEMENT_RUNES_SIZE, &seqRenforcementRunes, &seqRenforcementResultDir1 };
+// Séquence Renforcement => Directory 2
+const sResult seqRenforcementResultDir2 = { 3 /* Dir sortie */, 2  /* Son */ };
+const sSequence seqRenforcementDir2[] = { SEQ_RENFORCEMENT_RUNES_SIZE, &seqRenforcementRunes, &seqRenforcementResultDir2 };
+// Séquence Renforcement => Directory 3
+const sResult seqRenforcementResultDir2 = { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Dir sortie */, 2  /* Son */ };
+const sSequence seqRenforcementDir3[] = { SEQ_RENFORCEMENT_RUNES_SIZE, &seqRenforcementRunes, &seqRenforcementResultDir3 };
 
-/**
- * Directory 1 : Niveau d'énargie faible
- */
-
-// Directory 1 => Séquence Renforcement
-const sResult result_seq_renforcement_1 = {
-        2, // Directory destination APRES avoir joué le son
-        2  // Son à jouer
-};
-
-const sSequence seq_renforcement_1[] = {
-        ITEM_SEQ_RENFORCEMENT_SIZE,
-        &items_seq_renforcement,
-        &result_seq_renforcement_1,
-};
-
-//Liste des séquences du directory 1
-const sDirSequence seq_dir_1 = {
+// Directory 1 : Niveau d'énargie faible
+const sDirSequence sequencesDir1 = {
         3,
         {
-                &seq_initiation,
-                &seq_renforcement_1,
-                &seq_orga
+                &seqInitiation,
+                &seqRenforcementDir1,
+                &seqOrga
         }
 };
 
-/**
- * Directory 2 : Niveau d'énargie moyen
- */
-
-// Directory 2 => Séquence Renforcement
-const sResult result_seq_renforcement_2 = {
-        3, // Directory destination APRES avoir joué le son
-        2  // Son à jouer
-};
-
-const sSequence seq_renforcement_2[] = {
-        ITEM_SEQ_RENFORCEMENT_SIZE,
-        &items_seq_renforcement,
-        &result_seq_renforcement_2,
-};
-
-//Liste des séquences du directory 2
-const sDirSequence seq_dir_2 = {
+// Directory 2 : Niveau d'énargie moyen
+const sDirSequence sequencesDir2 = {
         3,
         {
-                &seq_initiation,
-                &seq_renforcement_2,
-                &seq_orga
+                &seqInitiation,
+                &seqRenforcementDir2,
+                &seqOrga
         }
 };
 
-/**
- * Directory 3 : Niveau d'énargie moyen
- */
-
-// Directory 3 => Séquence Renforcement
-const sResult result_seq_renforcement_2 = {
-        END_OF_SEQUENCE_CONTINUE_DIR_ID, // Directory destination APRES avoir joué le son
-        2  // Son à jouer
-};
-
-const sSequence seq_renforcement_3[] = {
-        ITEM_SEQ_RENFORCEMENT_SIZE,
-        &items_seq_renforcement,
-        &result_seq_renforcement_3,
-};
-
-//Liste des séquences du directory 2
-const sDirSequence seq_dir_3 = {
+// Directory 3 : Niveau d'énargie élevé
+const sDirSequence sequencesDir3 = {
         3,
         {
-                &seq_initiation,
-                &seq_renforcement_3,
-                &seq_orga
+                &seqInitiation,
+                &seqRenforcementDir3,
+                &seqOrga
         }
 };
 
-/**
- * Table of sequences by directory
- */
-const sDirSequence *seq_dir[NB_DIRECTORY] = {
-        &seq_dir_1,
-        &seq_dir_2,
-};
-
-
-
-
-
-
-
-
+// Table of sequences by directory
+const sDirSequence *seq_dir[NB_DIRECTORY] = { &sequencesDir1, &sequencesDir2, &sequencesDir3 };
