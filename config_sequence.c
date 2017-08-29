@@ -144,7 +144,7 @@ const sSequence seqRenforcementDir1[] = { SEQ_RENFORCEMENT_RUNES_SIZE, &seqRenfo
 const sResult seqRenforcementResultDir2 = { 3 /* Dir sortie */, 2  /* Son */ };
 const sSequence seqRenforcementDir2[] = { SEQ_RENFORCEMENT_RUNES_SIZE, &seqRenforcementRunes, &seqRenforcementResultDir2 };
 // Séquence Renforcement => Directory 3
-const sResult seqRenforcementResultDir2 = { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Dir sortie */, 2  /* Son */ };
+const sResult seqRenforcementResultDir3 = { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Dir sortie */, 2  /* Son */ };
 const sSequence seqRenforcementDir3[] = { SEQ_RENFORCEMENT_RUNES_SIZE, &seqRenforcementRunes, &seqRenforcementResultDir3 };
 
 // Directory 1 : Niveau d'énargie faible
