@@ -34,13 +34,15 @@ typedef struct {
     const unsigned char next_sound_directory_id; // special define to stop machine
     const unsigned char sound_id;
     const bool enable_relay; // true for enable relay
+    const unsigned short lock_timer_reload_value; // default time to wait before apply again this result
+    unsigned short lock_timer_counter; 
 } sResult;
 
 // define a config sequence
 typedef struct {
     const unsigned char nb_item;
     const sItem **p_items;
-    const sResult *p_result;
+    sResult *p_result;
 } sSequence;
 
 // define a config directory sequence

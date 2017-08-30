@@ -13,6 +13,7 @@
  * Variables
  */
 unsigned long old_time; // hold previous time
+unsigned long old_tick; // hold previous time for 1s tick
 
 bool wait_timeout_flag;
 bool disable_machine;
@@ -57,6 +58,7 @@ void setup() {
 
     // init variables
     old_time = millis();
+    old_tick = millis();
     in_seq.nb = 0;
 
     wait_timeout_flag = false;
@@ -71,6 +73,14 @@ void setup() {
     SetVolume(MP3_DEFAULT_SOUND_LEVEL);                // Set the volume, the range is 0x00 to 0x1E.
 
 
+    // init config counter to 0
+    for( unsigned char seq_dir_loop =0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
+    {
+      for( unsigned char seq_item_loop=0; seq_item_loop<seq_dir[seq_dir_loop]->nb_seq; seq_item_loop++ )
+      {
+        seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter = 0;
+      }
+    }
 
 
     //debug display items table
@@ -247,17 +257,36 @@ void loop() {
     // manage timeout
     if (!disable_timer) {
         comp_time = (unsigned long) (millis() - old_time);
-        if (comp_time > 5000) {
+        if (comp_time > 5000) 
+        {
             // desactive la machine
             clearSeqAndLeds();
             wait_timeout_flag = false;
-            if (disable_machine) {
+            if (disable_machine) 
+            {
                 disable_timer = true;
             }
 
             // sequence incomplète
 
         }
+    }
+
+    // 1s tick
+    if (((unsigned long) (millis() - old_tick)) > 1000) 
+    {
+      old_tick += 1000;
+      
+      for( unsigned char seq_dir_loop =0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
+      {
+        for( unsigned char seq_item_loop=0; seq_item_loop<seq_dir[seq_dir_loop]->nb_seq; seq_item_loop++ )
+        {
+          if( 0 != seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter )
+          {
+            seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter -= 1;
+          }
+        }
+      }     
     }
 }
 

@@ -45,7 +45,13 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sResult **op_seq_result) {
                 if ((item_loop == (p_seq->p_seq[seq_loop]->nb_item - 1)) &&
                     (item_loop == (p_in_seq->nb - 1))
                         ) {
-                    *op_seq_result = p_seq->p_seq[seq_loop]->p_result;
+                    // si la sequence est en lock on ne renvoi pas de résultat
+                    if( 0 != p_seq->p_seq[seq_loop]->p_result->lock_timer_counter )
+                    {
+                      *op_seq_result = p_seq->p_seq[seq_loop]->p_result;
+                      // on positionne le nouveau temps de lock
+                      p_seq->p_seq[seq_loop]->p_result->lock_timer_counter = p_seq->p_seq[seq_loop]->p_result->lock_timer_reload_value;
+                    }
                     seq_loop = p_seq->nb_seq;
                 }
 
