@@ -25,6 +25,7 @@ extern unsigned char led_tbl[NB_LED];
 
 // Relay
 #define EXT_RELAY_PIN 4
+#define EXT_RELAY_DELAY_MS 10000 // time to close relay in ms
 
 
 #endif // CONFIG_HARDWARE_H

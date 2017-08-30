@@ -158,6 +158,16 @@ void loop() {
                         Serial.println("Sequence Valide");
 
                         if (0xFF != current_directory) {
+
+                            // enable relay if needed
+                            if( true == seq_result->enable_relay )
+                            {
+                              digitalWrite(EXT_RELAY_PIN, HIGH);
+                              delay(EXT_RELAY_DELAY_MS);
+                              digitalWrite(EXT_RELAY_PIN, LOW);
+                            }
+
+                          
                             Serial.println("Play : ");
                             Serial.print("directory : ");
                             printHex(&current_directory, 1);
