@@ -238,12 +238,42 @@ void loop() {
                                 break;
                         }
                     }
-                } else {
+                    else
+                    {
+                      // cooldown
+                      Serial.println("Cooldown");
+                      
+                      switch( random(3) ) // argument is max exclusive value of random ie: if 3, return number 0,1,2
+                      {
+                        case 0:
+                        case 1:
+                        case 2:
+                        default:
+                          SpecifyfolderPlay(01, 101);
+                        break;
+                      }
+  
+                      // wait end of read
+                      while (QueryPlayStatus() != 0);
+
+                      wait_timeout_flag = true;
+                    }
+                } 
+                else 
+                {
                     // invlid sequence
 
                     Serial.println("Mauvaise séquence");
 
-                    SpecifyfolderPlay(01, 101);
+                    switch( random(3) ) // argument is max exclusive value of random ie: if 3, return number 0,1,2
+                    {
+                      case 0:
+                      case 1:
+                      case 2:
+                      default:
+                        SpecifyfolderPlay(01, 101);
+                      break;
+                    }
 
                     // wait end of read
                     while (QueryPlayStatus() != 0);
