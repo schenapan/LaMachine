@@ -23,4 +23,8 @@ extern unsigned char led_tbl[NB_LED];
 #define MP3_DEFAULT_DEVICE  2 // SD card
 #define MP3_UART_SPEED  9600
 
+// Relay
+#define EXT_RELAY_PIN 4
+
+
 #endif // CONFIG_HARDWARE_H

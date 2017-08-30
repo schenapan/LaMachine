@@ -1,6 +1,8 @@
 #ifndef CUSTOM_TYPEDEF_H
 #define CUSTOM_TYPEDEF_H
 
+#include <stdbool.h>
+
 // nombre d'octet d'un tag rfid
 #define UUID_TAG_SIZE 4
 
@@ -31,6 +33,7 @@ typedef struct {
 typedef struct {
     const unsigned char next_sound_directory_id; // special define to stop machine
     const unsigned char sound_id;
+    const bool enable_relay; // true for enable relay
 } sResult;
 
 // define a config sequence
