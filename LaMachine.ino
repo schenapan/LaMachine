@@ -28,8 +28,10 @@ CRfid *p_rfid;
 CEngine seq_engine(seq_dir[0], &items_table);
 
 // Note: You must define a SoftwareSerial class object that the name must be mp3, 
-//       but you can change the pin number according to the actual situation.
-SoftwareSerial mp3(MP3_SOFT_TX_PIN, MP3_SOFT_RX_PIN);
+//       but you can change the pin number according to the actual situation.$
+#ifndef NO_MP3_HARDWARE    
+  SoftwareSerial mp3(MP3_SOFT_TX_PIN, MP3_SOFT_RX_PIN);
+#endif
 
 
 /************************************
@@ -40,8 +42,10 @@ void setup() {
     // put your setup code here, to run once:
 
     // Init MP3
+#ifndef NO_MP3_HARDWARE    
     mp3.begin(MP3_UART_SPEED);
     delay(100);
+#endif
 
     // Init serial line for debug and needed by RFID library
     Serial.begin(9600);
@@ -67,11 +71,12 @@ void setup() {
     current_directory = 1;
 
     // configure MP3
+#ifndef NO_MP3_HARDWARE    
     delay(100);
     SelectPlayerDevice(MP3_DEFAULT_DEVICE);       // Select SD card as the player device.
     delay(100);
     SetVolume(MP3_DEFAULT_SOUND_LEVEL);                // Set the volume, the range is 0x00 to 0x1E.
-
+#endif
 
     // init config counter to 0
     for( unsigned char seq_dir_loop =0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
@@ -84,22 +89,34 @@ void setup() {
 
 
     //debug display items table
-    /*
-    Serial.print("Nb Item : ");
-    printHex(&(items_table.nb_items),1);
-    for( unsigned char loop=0; loop<items_table.nb_items; loop++)
+#ifdef DEBUG_PRINT
+    sItemTbl *p_items_tbl = &items_table;
+    Serial.print(F("Nb Item : "));
+    unsigned char nb_items = pgm_read_byte(p_items_tbl + offsetof(sItemTbl, nb_items));
+    printHex(&nb_items,1);
+    for( unsigned char loop=0; loop<nb_items; loop++)
     {
-      Serial.print("Item : ");
+      Serial.print(F("Item : "));
       printHex(&loop,1);
 
-      Serial.print("Nb UID : ");
-      printHex(&(items_table.p_items[loop]->nb_uid),1);
-      for( unsigned char uid_loop=0; uid_loop<items_table.p_items[loop]->nb_uid; uid_loop++ )
-      {
-        printHex(items_table.p_items[loop]->p_uid[uid_loop],UUID_TAG_SIZE);
+      Serial.print(F("Nb UID : "));
+      unsigned char nb_uuid;
+      unsigned short p_item = pgm_read_ptr(p_items_tbl + offsetof(sItemTbl, p_items) + (sizeof(sItem*)*loop));
+      nb_uuid = pgm_read_byte(p_item + offsetof(sItem, nb_uid));      
+      printHex(&nb_uuid,1);
+      for( unsigned char uid_loop=0; uid_loop<nb_uuid; uid_loop++ )
+      {        
+        t_tag l_tag;
+        unsigned short p_tag = pgm_read_ptr(p_item + offsetof(sItem, p_uid));
+        memcpy_P(l_tag, p_tag + (UUID_TAG_SIZE*uid_loop), UUID_TAG_SIZE);
+        printHex(l_tag,UUID_TAG_SIZE);
+        
       }
     }
-    */
+
+    //while(1);
+     
+#endif    
 }
 
 void loop() {
@@ -113,12 +130,12 @@ void loop() {
     if (!disable_machine) {
         if (!wait_timeout_flag) {
             read_nuidPICC = p_rfid->GetNewCardId();
-        }
+      }
     }
     if (NULL != read_nuidPICC) {
         sItem *lp_item;
 
-        Serial.print("TAG : ");
+        Serial.print(F("TAG : "));
         printHex(read_nuidPICC, UUID_TAG_SIZE);
 
         // convertit en item
@@ -127,12 +144,14 @@ void loop() {
             // Wrong TAG
             // que doit on faire ?
 
-            Serial.println("Wrong TAG");
+            Serial.println(F("Wrong TAG"));
 
+#ifndef NO_MP3_HARDWARE    
             SpecifyfolderPlay(01, 102);
 
             // wait end of read
             while (QueryPlayStatus() != 0);
+#endif
 
             clearSeqAndLeds();
         } else {
@@ -147,13 +166,34 @@ void loop() {
                     in_seq.p_item[in_seq.nb] = lp_item;
                     in_seq.nb += 1;
                     is_item_added = true;
-                    Serial.print("Add in seq : ");
+                    Serial.print(F("Add in seq : "));
                     printHex(&(in_seq.nb), 1);
                 }
             }
 
             if (true == is_item_added) {
                 // test si la nouvelle sequence est valide et retourne un résultat si il existe
+
+                /***/
+                // DEBUG
+#ifdef DEBUG_PRINT                
+                Serial.println(F("in_seq[0], OrgaRune : "));
+                unsigned short l_tmp_ptr;
+                l_tmp_ptr = (unsigned short)in_seq.p_item[0];
+                printHex((byte*)&l_tmp_ptr, 2);
+                l_tmp_ptr = (unsigned short)&varselRune;
+                printHex((byte*)&l_tmp_ptr, 2);
+                l_tmp_ptr = (unsigned short)&ensomhetRune;
+                printHex((byte*)&l_tmp_ptr, 2);
+                l_tmp_ptr = (unsigned short)&styrkeRune;
+                printHex((byte*)&l_tmp_ptr, 2);
+                l_tmp_ptr = (unsigned short)&stansRune;
+                printHex((byte*)&l_tmp_ptr, 2);
+                l_tmp_ptr = (unsigned short)&orgaRune;
+                printHex((byte*)&l_tmp_ptr, 2);
+#endif
+                /***/
+                
                 if (true == seq_engine.IsSequenceValid(&in_seq, &seq_result)) {
                     // a valid sequence is found
                     // update LED
@@ -165,36 +205,39 @@ void loop() {
                     if (NULL != seq_result) {
                         // play sound
 
-                        Serial.println("Sequence Valide");
+                        Serial.println(F("Sequence Valide"));
 
                         if (0xFF != current_directory) {
 
                             // enable relay if needed
                             if( true == seq_result->enable_relay )
                             {
+                              Serial.println(F("Enable Relay"));
                               digitalWrite(EXT_RELAY_PIN, HIGH);
                               delay(EXT_RELAY_DELAY_MS);
                               digitalWrite(EXT_RELAY_PIN, LOW);
                             }
 
                           
-                            Serial.println("Play : ");
-                            Serial.print("directory : ");
+                            Serial.println(F("Play : "));
+                            Serial.print(F("directory : "));
                             printHex(&current_directory, 1);
-                            Serial.print("sound : ");
+                            Serial.print(F("sound : "));
                             printHex(&(seq_result->sound_id), 1);
 
+#ifndef NO_MP3_HARDWARE    
                             SpecifyfolderPlay(current_directory, seq_result->sound_id);
 
                             // wait end of read
                             while (QueryPlayStatus() != 0);
+#endif
                         }
 
                         // switch to next directory
                         switch (seq_result->next_sound_directory_id) {
                             case END_OF_SEQUENCE_RESTART_ID: {
                                 // end of current sequence with success
-                                Serial.println("Finie et re-initialise la machine");
+                                Serial.println(F("Finie et re-initialise la machine"));
 
                                 seq_engine.SetDirectorySequence(seq_dir[0]);
                                 current_directory = 1;
@@ -205,7 +248,7 @@ void loop() {
 
                             case END_OF_SEQUENCE_CONTINUE_DIR_ID: {
                                 // end of current sequence with success
-                                Serial.println("Finie et continue dans le même repertoire");
+                                Serial.println(F("Finie et continue dans le même repertoire"));
 
                                 current_directory = 0xFF;
 
@@ -215,7 +258,7 @@ void loop() {
 
                             case END_OF_SEQUENCE_DISABLE_DIR_ID: {
                                 // disable machine final ending
-                                Serial.println("Finie et désactive la machine");
+                                Serial.println(F("Finie et désactive la machine"));
 
                                 current_directory = 0xFF;
 
@@ -226,7 +269,7 @@ void loop() {
 
                             default: {
                                 // switch to new directory
-                                Serial.println("Finie et continue dans un nouveau répertoire");
+                                Serial.println(F("Finie et continue dans un nouveau répertoire"));
 
                                 if (seq_result->next_sound_directory_id <= NB_DIRECTORY) {
                                     seq_engine.SetDirectorySequence(seq_dir[seq_result->next_sound_directory_id - 1]);
@@ -241,8 +284,9 @@ void loop() {
                     else
                     {
                       // cooldown
-                      Serial.println("Cooldown");
-                      
+                      Serial.println(F("Cooldown"));
+
+#ifndef NO_MP3_HARDWARE    
                       switch( random(3) ) // argument is max exclusive value of random ie: if 3, return number 0,1,2
                       {
                         case 0:
@@ -255,7 +299,7 @@ void loop() {
   
                       // wait end of read
                       while (QueryPlayStatus() != 0);
-
+#endif
                       wait_timeout_flag = true;
                     }
                 } 
@@ -263,8 +307,9 @@ void loop() {
                 {
                     // invlid sequence
 
-                    Serial.println("Mauvaise séquence");
+                    Serial.println(F("Mauvaise séquence"));
 
+#ifndef NO_MP3_HARDWARE    
                     switch( random(3) ) // argument is max exclusive value of random ie: if 3, return number 0,1,2
                     {
                       case 0:
@@ -277,6 +322,7 @@ void loop() {
 
                     // wait end of read
                     while (QueryPlayStatus() != 0);
+#endif
 
                     wait_timeout_flag = true;
                 }

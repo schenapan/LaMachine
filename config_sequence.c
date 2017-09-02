@@ -1,5 +1,4 @@
 #include "config_sequence.h"
-#include "config_items.h"
 
 const sItem *seq0Runes[] = { &kjoligRune, &fornuftRune };
 #define SEQ_0_RUNES_SIZE (sizeof(seq0Runes)/sizeof(sItem*))
@@ -156,10 +155,16 @@ const sItem *seq30Runes[] = { &storsaedRune, &styrkeRune };
 const sResult seq30Result = { END_OF_SEQUENCE_RESTART_ID, 124 /* stosty */, true, 120 };
 const sSequence seq30[] = { SEQ_30_RUNES_SIZE, &seq30Runes, &seq30Result };
 
+const sItem *seqOrgaRunes[] = { &orgaRune };
+#define SEQ_ORGA_RUNES_SIZE (sizeof(seqOrgaRunes)/sizeof(sItem*))
+const sResult seqOrgaResult = { END_OF_SEQUENCE_RESTART_ID, 124 /* stosty */, true, 3 };
+const sSequence seqOrga[] = { SEQ_ORGA_RUNES_SIZE, &seqOrgaRunes, &seqOrgaResult };
+
+
 const sDirSequence sequencesDir1 = {
-	14,
+	15,
 	{
-		&seq0, &seq1, &seq2, &seq3, &seq5, &seq6, &seq7, &seq10, &seq13, &seq14, &seq16, &seq19, &seq24, &seq30
+		&seq0, &seq1, &seq2, &seq3, &seq5, &seq6, &seq7, &seq10, &seq13, &seq14, &seq16, &seq19, &seq24, &seq30, &seqOrga
 	}
 };
 

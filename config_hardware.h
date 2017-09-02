@@ -28,4 +28,12 @@ extern unsigned char led_tbl[NB_LED];
 #define EXT_RELAY_DELAY_MS 10000 // time to close relay in ms
 
 
+/**
+ * DEBUG
+ */
+
+// #define NO_MP3_HARDWARE
+// #define NO_RFID_HARDWARE
+// #define DEBUG_PRINT
+
 #endif // CONFIG_HARDWARE_H

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 
 #include "engine.hpp"
 
@@ -13,22 +14,31 @@ void CEngine::SetDirectorySequence(const sDirSequence *ip_seq) {
     p_seq = ip_seq;
 }
 
-sItem *CEngine::GetItem(unsigned char i_uid[UUID_TAG_SIZE]) {
-    sItem *op_item = NULL;
+sItem *CEngine::GetItem(unsigned char i_uid[UUID_TAG_SIZE]) 
+{
+  sItem *op_item = NULL;
 
-    // parcours par item
-    for (unsigned char item_loop = 0; item_loop < p_items_tbl->nb_items; item_loop++) {
-        // pour chaque item regarde les uid associé
-        for (unsigned char uuid_loop = 0; uuid_loop < p_items_tbl->p_items[item_loop]->nb_uid; uuid_loop++) {
-            if (0 == memcmp(p_items_tbl->p_items[item_loop]->p_uid[uuid_loop], i_uid, UUID_TAG_SIZE)) {
-                op_item = p_items_tbl->p_items[item_loop];
-                uuid_loop = p_items_tbl->p_items[item_loop]->nb_uid;
-                item_loop = p_items_tbl->nb_items;
-            }
-        }
+  // parcours par item
+  unsigned char nb_items = pgm_read_byte(p_items_tbl + offsetof(sItemTbl, nb_items));
+  for (unsigned char item_loop = 0; item_loop < nb_items; item_loop++) 
+  {
+    // pour chaque item regarde les uid associé
+    unsigned short p_item = pgm_read_ptr(p_items_tbl + offsetof(sItemTbl, p_items) + (sizeof(sItem*)*item_loop));
+    unsigned char nb_uid = pgm_read_byte(p_item + offsetof(sItem, nb_uid));
+    for (unsigned char uuid_loop = 0; uuid_loop < nb_uid; uuid_loop++) 
+    {
+      unsigned short p_tag = pgm_read_ptr(p_item + offsetof(sItem, p_uid));
+      //if (0 == memcmp(p_items_tbl->p_items[item_loop]->p_uid[uuid_loop], i_uid, UUID_TAG_SIZE)) 
+      if (0 == memcmp_PF(i_uid, p_tag + (UUID_TAG_SIZE*uuid_loop), UUID_TAG_SIZE)) 
+      {
+        op_item = (sItem *)p_item; //p_items_tbl->p_items[item_loop];
+        uuid_loop = nb_uid; //p_items_tbl->p_items[item_loop]->nb_uid;
+        item_loop = nb_items; //p_items_tbl->nb_items;
+      }
     }
+  }
 
-    return op_item;
+  return op_item;
 }
 
 bool CEngine::IsSequenceValid(sSeq *p_in_seq, sResult **op_seq_result) {
@@ -46,7 +56,7 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sResult **op_seq_result) {
                     (item_loop == (p_in_seq->nb - 1))
                         ) {
                     // si la sequence est en lock on ne renvoi pas de résultat
-                    if( 0 != p_seq->p_seq[seq_loop]->p_result->lock_timer_counter )
+                    if( 0 == p_seq->p_seq[seq_loop]->p_result->lock_timer_counter )
                     {
                       *op_seq_result = p_seq->p_seq[seq_loop]->p_result;
                       // on positionne le nouveau temps de lock

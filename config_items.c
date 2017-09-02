@@ -33,60 +33,60 @@
 */
 
 // Varsel
-const t_tag varselTags[] = {TAG_1, TAG_2};
-const sItem varselRune = {2, varselTags};
+const t_tag varselTags[] PROGMEM = {TAG_1, TAG_2};
+const sItem varselRune PROGMEM = {2, varselTags};
 
 // Ensomhet
-const t_tag ensomhetTags[] = {TAG_3, TAG_4};
-const sItem ensomhetRune = {2, ensomhetTags};
+const t_tag ensomhetTags[] PROGMEM = {TAG_3, TAG_4};
+const sItem ensomhetRune PROGMEM = {2, ensomhetTags};
 
 // Styrke
-const t_tag styrkeTags[] = {TAG_5, TAG_6};
-const sItem styrkeRune = {2, styrkeTags};
+const t_tag styrkeTags[] PROGMEM = {TAG_5, TAG_6};
+const sItem styrkeRune PROGMEM = {2, styrkeTags};
 
 // Stans
-const t_tag stansTags[] = {TAG_7, TAG_8};
-const sItem stansRune = {2, stansTags};
+const t_tag stansTags[] PROGMEM = {TAG_7, TAG_8};
+const sItem stansRune PROGMEM = {2, stansTags};
 
 // Storsaed
-const t_tag storsaedTags[] = {TAG_9, TAG_10};
-const sItem storsaedRune = {2, storsaedTags};
+const t_tag storsaedTags[] PROGMEM = {TAG_9, TAG_10};
+const sItem storsaedRune PROGMEM = {2, storsaedTags};
 
 // Sterk
-const t_tag sterkTags[] = {TAG_11, TAG_12};
-const sItem sterkRune = {2, sterkTags};
+const t_tag sterkTags[] PROGMEM = {TAG_11, TAG_12};
+const sItem sterkRune PROGMEM = {2, sterkTags};
 
 // Fjell
-const t_tag fjellTags[] = {TAG_13, TAG_14};
-const sItem fjellRune = {2, fjellTags};
+const t_tag fjellTags[] PROGMEM = {TAG_13, TAG_14};
+const sItem fjellRune PROGMEM = {2, fjellTags};
 
 // Grenselos
-const t_tag grenselosTags[] = {TAG_15, TAG_16};
-const sItem grenselosRune = {2, grenselosTags};
+const t_tag grenselosTags[] PROGMEM = {TAG_15, TAG_16};
+const sItem grenselosRune PROGMEM = {2, grenselosTags};
 
 // Nod
-const t_tag nodTags[] = {TAG_17, TAG_18};
-const sItem nodRune = {2, nodTags};
+const t_tag nodTags[] PROGMEM = {TAG_17, TAG_18};
+const sItem nodRune PROGMEM = {2, nodTags};
 
 // Herje
-const t_tag herjeTags[] = {TAG_19, TAG_20};
-const sItem herjeRune = {2, herjeTags};
+const t_tag herjeTags[] PROGMEM = {TAG_19, TAG_20};
+const sItem herjeRune PROGMEM = {2, herjeTags};
 
 // Fornuft
-const t_tag fornuftTags[] = {TAG_21, TAG_22};
-const sItem fornuftRune = {2, fornuftTags};
+const t_tag fornuftTags[] PROGMEM = {TAG_21, TAG_22};
+const sItem fornuftRune PROGMEM = {2, fornuftTags};
 
 // Kjolig
-const t_tag kjoligTags[] = {TAG_23, TAG_24};
-const sItem kjoligRune = {2, kjoligTags};
+const t_tag kjoligTags[] PROGMEM = {TAG_23, TAG_24};
+const sItem kjoligRune PROGMEM = {2, kjoligTags};
 
 // Villskap
-const t_tag villskapTags[] = {TAG_23, TAG_24};
-const sItem villskapRune = {2, villskapTags};
+const t_tag villskapTags[] PROGMEM = {TAG_25, TAG_26};
+const sItem villskapRune PROGMEM = {2, villskapTags};
 
 // Orga
-const t_tag orgaTags[] = {TAG_CARTE};
-const sItem orgaRune = {1, orgaTags};
+const t_tag orgaTags[] PROGMEM = {TAG_CARTE};
+const sItem orgaRune PROGMEM = {1, orgaTags};
 
 /*
 const t_tag uid_x_data[] = {
@@ -100,7 +100,7 @@ const sItem item_x = {27,uid_x_data};
 /**
  * export table of items, simplify other process
  */
-const sItemTbl items_table = {
+const sItemTbl items_table PROGMEM = {
         14,
         {
                 &varselRune,

@@ -2,6 +2,7 @@
 #define CUSTOM_TYPEDEF_H
 
 #include <stdbool.h>
+#include <avr/pgmspace.h>
 
 // nombre d'octet d'un tag rfid
 #define UUID_TAG_SIZE 4
