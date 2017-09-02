@@ -50,17 +50,18 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sResult **op_seq_result) {
         // regarde pour chaque item de la séquence entrante si elle correspond
         for (unsigned char item_loop = 0; item_loop < p_in_seq->nb; item_loop++) {
             // si l'item ne correspond pas, on sort de cette séquence
-            if (p_seq->p_seq[seq_loop]->p_items[item_loop] == p_in_seq->p_item[item_loop]) {
+            unsigned short p_item = pgm_read_ptr(p_seq->p_seq[seq_loop]->p_items + (sizeof(sItem*)*item_loop));
+            if (p_item == p_in_seq->p_item[item_loop]) {
                 // si il s'agit du dernier item de la séquence, on a trouver un résultat
                 if ((item_loop == (p_seq->p_seq[seq_loop]->nb_item - 1)) &&
                     (item_loop == (p_in_seq->nb - 1))
                         ) {
-                    // si la sequence est en lock on ne renvoi pas de résultat
-                    if( 0 == p_seq->p_seq[seq_loop]->p_result->lock_timer_counter )
+                    // si la sequence est en lock on ne renvoi pas de résultat -en fait si, le test sera fait plus loin
+                    // if( 0 == p_seq->p_seq[seq_loop]->p_result->lock_timer_counter )
                     {
                       *op_seq_result = p_seq->p_seq[seq_loop]->p_result;
                       // on positionne le nouveau temps de lock
-                      p_seq->p_seq[seq_loop]->p_result->lock_timer_counter = p_seq->p_seq[seq_loop]->p_result->lock_timer_reload_value;
+                     // p_seq->p_seq[seq_loop]->p_result->lock_timer_counter = p_seq->p_seq[seq_loop]->p_result->lock_timer_reload_value;
                     }
                     seq_loop = p_seq->nb_seq;
                 }

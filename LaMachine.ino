@@ -202,10 +202,12 @@ void loop() {
                     }
 
                     // check if a result exist
-                    if (NULL != seq_result) {
+                    if ((NULL != seq_result) && (0 == seq_result->lock_timer_counter)) {
                         // play sound
 
                         Serial.println(F("Sequence Valide"));
+
+                        seq_result->lock_timer_counter = seq_result->lock_timer_reload_value;
 
                         if (0xFF != current_directory) {
 
@@ -283,24 +285,28 @@ void loop() {
                     }
                     else
                     {
-                      // cooldown
-                      Serial.println(F("Cooldown"));
+                      // cooldown : UNIQUEMENT SI LA SEQUENCE EST VALIDE ET SOUS LOCK !!!
+                      if ((NULL != seq_result) && (0 != seq_result->lock_timer_counter)) 
+                      {
+                      
+                        Serial.println(F("Cooldown"));
 
 #ifndef NO_MP3_HARDWARE    
-                      switch( random(3) ) // argument is max exclusive value of random ie: if 3, return number 0,1,2
-                      {
-                        case 0:
-                        case 1:
-                        case 2:
-                        default:
-                          SpecifyfolderPlay(01, 101);
-                        break;
-                      }
+                        switch( random(3) ) // argument is max exclusive value of random ie: if 3, return number 0,1,2
+                        {
+                          case 0:
+                          case 1:
+                          case 2:
+                          default:
+                            SpecifyfolderPlay(01, 101);
+                          break;
+                        }
   
-                      // wait end of read
-                      while (QueryPlayStatus() != 0);
+                        // wait end of read
+                        while (QueryPlayStatus() != 0);
 #endif
-                      wait_timeout_flag = true;
+                        wait_timeout_flag = true;
+                      }
                     }
                 } 
                 else 
