@@ -162,7 +162,7 @@ void loop() {
 
             // ajoute le nouvel item
             if (in_seq.nb < MAX_SEQ_ITEM) {
-                if (in_seq.p_item[in_seq.nb - 1] != lp_item) {
+                if (in_seq.nb == 0 || (in_seq.p_item[in_seq.nb - 1] != lp_item)) {
                     in_seq.p_item[in_seq.nb] = lp_item;
                     in_seq.nb += 1;
                     is_item_added = true;
