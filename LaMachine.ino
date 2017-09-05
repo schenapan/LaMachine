@@ -147,7 +147,7 @@ void loop() {
             Serial.println(F("Wrong TAG"));
 
 #ifndef NO_MP3_HARDWARE    
-            SpecifyfolderPlay(01, 102);
+            SpecifyfolderPlay(99, 002);
 
             // wait end of read
             while (QueryPlayStatus() != 0);
@@ -298,7 +298,7 @@ void loop() {
                           case 1:
                           case 2:
                           default:
-                            SpecifyfolderPlay(01, 101);
+                            SpecifyfolderPlay(99, 001);
                           break;
                         }
   
@@ -322,7 +322,7 @@ void loop() {
                       case 1:
                       case 2:
                       default:
-                        SpecifyfolderPlay(01, 101);
+                        SpecifyfolderPlay(99, 001);
                       break;
                     }
 
