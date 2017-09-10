@@ -57,7 +57,7 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sResult **op_seq_result) {
 					if (item_loop == p_seq->p_seq[seq_loop]->nb_item - 1) {
 						// si la sequence est en lock on ne renvoi pas de résultat -en fait si, le test sera fait plus loin
 						// if( 0 == p_seq->p_seq[seq_loop]->p_result->lock_timer_counter )
-						*op_seq_result = p_seq->p_seq[seq_loop]->p_result;
+						*op_seq_result = &p_seq->p_seq[seq_loop]->p_result; /* --SEB-- */
 						seq_loop = p_seq->nb_seq;
 						item_loop = p_in_seq->nb;
 						// on positionne le nouveau temps de lock

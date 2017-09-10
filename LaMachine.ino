@@ -79,6 +79,7 @@ void setup() {
 #endif
 
     // init config counter to 0
+    /* --SEB--
     for( unsigned char seq_dir_loop =0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
     {
       for( unsigned char seq_item_loop=0; seq_item_loop<seq_dir[seq_dir_loop]->nb_seq; seq_item_loop++ )
@@ -86,10 +87,11 @@ void setup() {
         seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter = 0;
       }
     }
+    */
 
 
     //debug display items table
-#ifdef DEBUG_PRINT
+#ifdef DEBUG_PRINT_CONFIG_ITEMS
     sItemTbl *p_items_tbl = &items_table;
     Serial.print(F("Nb Item : "));
     unsigned char nb_items = pgm_read_byte(p_items_tbl + offsetof(sItemTbl, nb_items));
@@ -99,10 +101,12 @@ void setup() {
       Serial.print(F("Item : "));
       printHex(&loop,1);
 
-      Serial.print(F("Nb UID : "));
+      
       unsigned char nb_uuid;
       unsigned short p_item = pgm_read_ptr(p_items_tbl + offsetof(sItemTbl, p_items) + (sizeof(sItem*)*loop));
+      printHex((unsigned char*)&p_item,2);
       nb_uuid = pgm_read_byte(p_item + offsetof(sItem, nb_uid));      
+      Serial.print(F("Nb UID : "));
       printHex(&nb_uuid,1);
       for( unsigned char uid_loop=0; uid_loop<nb_uuid; uid_loop++ )
       {        
@@ -113,10 +117,43 @@ void setup() {
         
       }
     }
-
-    //while(1);
-     
 #endif    
+
+#ifdef DEBUG_PRINT_CONFIG_SEQ
+
+  for(unsigned char seq_dir_loop=0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
+  {
+    Serial.print(F("Seq dir : "));
+    printHex(&seq_dir_loop,1);
+
+    unsigned short lp_seq_dir =  pgm_read_ptr(&seq_dir[seq_dir_loop]);
+    unsigned char l_nb_sequence = pgm_read_byte(lp_seq_dir + offsetof(sDirSequence, nb_seq));
+    Serial.print(F("nb sequence : "));
+    printHex(&l_nb_sequence,1);
+
+    for( unsigned char seq_loop=0; seq_loop<l_nb_sequence; seq_loop++ )
+    {
+      Serial.print(F("Seq : "));
+      printHex(&seq_loop,1);
+      
+      unsigned short lp_seq = pgm_read_ptr(&(((sDirSequence*)lp_seq_dir)->p_seq[seq_loop])); // pgm_read_ptr(lp_seq_dir + offsetof(sDirSequence, p_seq));
+      unsigned char l_nb_item = pgm_read_byte(&(((sSequence*)lp_seq)->nb_item)); // pgm_read_byte(lp_seq + offsetof(sSequence, nb_item));
+      Serial.print(F("nb items : "));
+      printHex(&l_nb_item,1);      
+
+      for( unsigned char item_loop=0; item_loop<l_nb_item; item_loop++ )
+      {
+        Serial.print(F("Item : "));
+        printHex(&item_loop,1);
+        
+        unsigned short lp_item = pgm_read_ptr(lp_seq + offsetof(sSequence, p_items) + (sizeof(sItem*)*item_loop)); //pgm_read_ptr(&((sSequence*)lp_seq)->p_items[item_loop]);
+        printHex((unsigned char *)&lp_item,2); 
+      }
+    }
+  }
+
+#endif
+
 }
 
 void loop() {
@@ -173,27 +210,6 @@ void loop() {
 
             if (true == is_item_added) {
                 // test si la nouvelle sequence est valide et retourne un résultat si il existe
-
-                /***/
-                // DEBUG
-#ifdef DEBUG_PRINT                
-                Serial.println(F("in_seq[0], OrgaRune : "));
-                unsigned short l_tmp_ptr;
-                l_tmp_ptr = (unsigned short)in_seq.p_item[0];
-                printHex((byte*)&l_tmp_ptr, 2);
-                l_tmp_ptr = (unsigned short)&varselRune;
-                printHex((byte*)&l_tmp_ptr, 2);
-                l_tmp_ptr = (unsigned short)&ensomhetRune;
-                printHex((byte*)&l_tmp_ptr, 2);
-                l_tmp_ptr = (unsigned short)&styrkeRune;
-                printHex((byte*)&l_tmp_ptr, 2);
-                l_tmp_ptr = (unsigned short)&stansRune;
-                printHex((byte*)&l_tmp_ptr, 2);
-                l_tmp_ptr = (unsigned short)&orgaRune;
-                printHex((byte*)&l_tmp_ptr, 2);
-#endif
-                /***/
-                
                 if (true == seq_engine.IsSequenceValid(&in_seq, &seq_result)) {
                     // a valid sequence is found
                     // update LED
@@ -202,12 +218,12 @@ void loop() {
                     }
 
                     // check if a result exist
-                    if ((NULL != seq_result) && (0 == seq_result->lock_timer_counter)) {
+                    if ((NULL != seq_result) /* --SEB--&& (0 == seq_result->lock_timer_counter)*/ ) {
                         // play sound
 
                         Serial.println(F("Sequence Valide"));
 
-                        seq_result->lock_timer_counter = seq_result->lock_timer_reload_value;
+/* --SEB--                        seq_result->lock_timer_counter = seq_result->lock_timer_reload_value; */
 
                         if (0xFF != current_directory) {
 
@@ -286,6 +302,7 @@ void loop() {
                     else
                     {
                       // cooldown : UNIQUEMENT SI LA SEQUENCE EST VALIDE ET SOUS LOCK !!!
+                      /* --SEB--
                       if ((NULL != seq_result) && (0 != seq_result->lock_timer_counter)) 
                       {
                       
@@ -307,6 +324,7 @@ void loop() {
 #endif
                         wait_timeout_flag = true;
                       }
+                      */
                     }
                 } 
                 else 
@@ -355,6 +373,7 @@ void loop() {
     }
 
     // 1s tick
+    /* --SEB--
     if (((unsigned long) (millis() - old_tick)) > 1000) 
     {
       old_tick += 1000;
@@ -370,6 +389,7 @@ void loop() {
         }
       }     
     }
+    */
 }
 
 /**

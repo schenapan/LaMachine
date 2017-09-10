@@ -8,7 +8,7 @@
  * export table of sequence, indice of table is same as directory
  */
 #define NB_DIRECTORY  3
-extern const sDirSequence *seq_dir[NB_DIRECTORY];
+extern const sDirSequence * const seq_dir[NB_DIRECTORY] PROGMEM;
 
 /**
  * export table of items, simplify other process

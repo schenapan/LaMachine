@@ -27,7 +27,7 @@ typedef struct {
 // define an items table
 typedef struct {
     const unsigned char nb_items;
-    const sItem *p_items[];
+    const sItem * const p_items[];
 } sItemTbl;
 
 // define a sequence result
@@ -36,20 +36,20 @@ typedef struct {
     const unsigned char sound_id;
     const bool enable_relay; // true for enable relay
     const unsigned short lock_timer_reload_value; // default time to wait before apply again this result
-    unsigned short lock_timer_counter; 
+//    unsigned short lock_timer_counter; 
 } sResult;
 
 // define a config sequence
 typedef struct {
+    sResult p_result;
     const unsigned char nb_item;
-    const sItem **p_items;
-    sResult *p_result;
+    const sItem * const p_items[];
 } sSequence;
 
 // define a config directory sequence
 typedef struct {
     const unsigned char nb_seq;
-    const sSequence *p_seq[];
+    const sSequence * const p_seq[];
 } sDirSequence;
 
 // define a type for storing sequence in progress
