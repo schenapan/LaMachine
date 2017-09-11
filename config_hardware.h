@@ -32,10 +32,10 @@ extern unsigned char led_tbl[NB_LED];
  * DEBUG
  */
 
- #define NO_MP3_HARDWARE
- #define NO_RFID_HARDWARE
- #define DEBUG_PRINT_CONFIG_ITEMS
- #define DEBUG_PRINT_CONFIG_SEQ
- #define DEBUG_PRINT
+// #define NO_MP3_HARDWARE
+// #define NO_RFID_HARDWARE
+// #define DEBUG_PRINT_CONFIG_ITEMS
+// #define DEBUG_PRINT_CONFIG_SEQ
+// #define DEBUG_PRINT
 
 #endif // CONFIG_HARDWARE_H

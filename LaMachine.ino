@@ -25,7 +25,7 @@ unsigned char current_directory;
 
 
 CRfid *p_rfid;
-CEngine seq_engine(seq_dir[0], &items_table);
+CEngine seq_engine(0, &items_table);
 
 // Note: You must define a SoftwareSerial class object that the name must be mp3, 
 //       but you can change the pin number according to the actual situation.$
@@ -64,6 +64,9 @@ void setup() {
     old_time = millis();
     old_tick = millis();
     in_seq.nb = 0;
+
+    // init engine
+    seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[0]));
 
     wait_timeout_flag = false;
     disable_machine = false;
@@ -136,8 +139,8 @@ void setup() {
       Serial.print(F("Seq : "));
       printHex(&seq_loop,1);
       
-      unsigned short lp_seq = pgm_read_ptr(&(((sDirSequence*)lp_seq_dir)->p_seq[seq_loop])); // pgm_read_ptr(lp_seq_dir + offsetof(sDirSequence, p_seq));
-      unsigned char l_nb_item = pgm_read_byte(&(((sSequence*)lp_seq)->nb_item)); // pgm_read_byte(lp_seq + offsetof(sSequence, nb_item));
+      unsigned short lp_seq = pgm_read_ptr(&(((sDirSequence*)lp_seq_dir)->p_seq[seq_loop]));
+      unsigned char l_nb_item = pgm_read_byte(&(((sSequence*)lp_seq)->nb_item));
       Serial.print(F("nb items : "));
       printHex(&l_nb_item,1);      
 
@@ -146,7 +149,7 @@ void setup() {
         Serial.print(F("Item : "));
         printHex(&item_loop,1);
         
-        unsigned short lp_item = pgm_read_ptr(lp_seq + offsetof(sSequence, p_items) + (sizeof(sItem*)*item_loop)); //pgm_read_ptr(&((sSequence*)lp_seq)->p_items[item_loop]);
+        unsigned short lp_item = pgm_read_ptr(&((sSequence*)lp_seq)->p_items[item_loop]);
         printHex((unsigned char *)&lp_item,2); 
       }
     }
@@ -160,7 +163,7 @@ void loop() {
     // put your main code here, to run repeatedly:
     unsigned long comp_time;
     byte *read_nuidPICC;
-    sResult *seq_result;
+    sSequence *seq_result;
 
     // Attente d'une carte RFID
     read_nuidPICC = NULL;
@@ -228,7 +231,7 @@ void loop() {
                         if (0xFF != current_directory) {
 
                             // enable relay if needed
-                            if( true == seq_result->enable_relay )
+                            if( true == pgm_read_byte(&seq_result->result.enable_relay) )
                             {
                               Serial.println(F("Enable Relay"));
                               digitalWrite(EXT_RELAY_PIN, HIGH);
@@ -241,10 +244,11 @@ void loop() {
                             Serial.print(F("directory : "));
                             printHex(&current_directory, 1);
                             Serial.print(F("sound : "));
-                            printHex(&(seq_result->sound_id), 1);
+                            unsigned char l_sound_id = pgm_read_byte(&seq_result->result.sound_id);
+                            printHex(&l_sound_id, 1);
 
 #ifndef NO_MP3_HARDWARE    
-                            SpecifyfolderPlay(current_directory, seq_result->sound_id);
+                            SpecifyfolderPlay(current_directory, l_sound_id );
 
                             // wait end of read
                             while (QueryPlayStatus() != 0);
@@ -252,12 +256,13 @@ void loop() {
                         }
 
                         // switch to next directory
-                        switch (seq_result->next_sound_directory_id) {
+                        unsigned char l_next_sound_dir = pgm_read_byte(&seq_result->result.next_sound_directory_id);
+                        switch (l_next_sound_dir) {
                             case END_OF_SEQUENCE_RESTART_ID: {
                                 // end of current sequence with success
                                 Serial.println(F("Finie et re-initialise la machine"));
 
-                                seq_engine.SetDirectorySequence(seq_dir[0]);
+                                seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[0]));
                                 current_directory = 1;
 
                                 wait_timeout_flag = true;
@@ -289,9 +294,9 @@ void loop() {
                                 // switch to new directory
                                 Serial.println(F("Finie et continue dans un nouveau répertoire"));
 
-                                if (seq_result->next_sound_directory_id <= NB_DIRECTORY) {
-                                    seq_engine.SetDirectorySequence(seq_dir[seq_result->next_sound_directory_id - 1]);
-                                    current_directory = seq_result->next_sound_directory_id;
+                                if (l_next_sound_dir <= NB_DIRECTORY) {
+                                    current_directory = l_next_sound_dir;
+                                    seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[l_next_sound_dir - 1]));
                                 }
 
                                 wait_timeout_flag = true;

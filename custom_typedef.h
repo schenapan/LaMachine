@@ -41,7 +41,7 @@ typedef struct {
 
 // define a config sequence
 typedef struct {
-    sResult p_result;
+    sResult result;
     const unsigned char nb_item;
     const sItem * const p_items[];
 } sSequence;

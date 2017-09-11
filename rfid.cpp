@@ -33,7 +33,7 @@ byte *CRfid::GetNewCardId(void) {
 #else
   // debug
   static unsigned long dbg_time = millis();
-  static unsigned char count = 3;
+  static unsigned char count = 0;
 
   if( ((unsigned long)(millis() - dbg_time)) > 5000 )
   {
@@ -48,7 +48,6 @@ byte *CRfid::GetNewCardId(void) {
   		previous_uid[3] = 0x3B;
   		lo_new_card = previous_uid;
       count += 1;
-      count = 0xFE;
     }
     else if( 1 == count )
     {
@@ -69,6 +68,8 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[3] = 0xBB;
       lo_new_card = previous_uid;
       count += 1;
+      
+      count = 0xFE;
     }
     else
     {
