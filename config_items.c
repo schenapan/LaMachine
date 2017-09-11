@@ -35,15 +35,15 @@
 // Varsel
 const t_tag varselTags[] PROGMEM = {TAG_1, TAG_2};
 const sItem varselRune PROGMEM = {2, varselTags};
-/*
+
 // Ensomhet
 const t_tag ensomhetTags[] PROGMEM = {TAG_3, TAG_4};
 const sItem ensomhetRune PROGMEM = {2, ensomhetTags};
-*/
+
 // Styrke
 const t_tag styrkeTags[] PROGMEM = {TAG_5, TAG_6};
 const sItem styrkeRune PROGMEM = {2, styrkeTags};
-/*
+
 // Stans
 const t_tag stansTags[] PROGMEM = {TAG_7, TAG_8};
 const sItem stansRune PROGMEM = {2, stansTags};
@@ -55,19 +55,19 @@ const sItem storsaedRune PROGMEM = {2, storsaedTags};
 // Sterk
 const t_tag sterkTags[] PROGMEM = {TAG_11, TAG_12};
 const sItem sterkRune PROGMEM = {2, sterkTags};
-*/
+
 // Fjell
 const t_tag fjellTags[] PROGMEM = {TAG_13, TAG_14};
 const sItem fjellRune PROGMEM = {2, fjellTags};
-/*
+
 // Grenselos
 const t_tag grenselosTags[] PROGMEM = {TAG_15, TAG_16};
 const sItem grenselosRune PROGMEM = {2, grenselosTags};
-*/
+
 // Nod
 const t_tag nodTags[] PROGMEM = {TAG_17, TAG_18};
 const sItem nodRune PROGMEM = {2, nodTags};
-/*
+
 // Herje
 const t_tag herjeTags[] PROGMEM = {TAG_19, TAG_20};
 const sItem herjeRune PROGMEM = {2, herjeTags};
@@ -87,15 +87,15 @@ const sItem villskapRune PROGMEM = {2, villskapTags};
 // Orga
 const t_tag orgaTags[] PROGMEM = {TAG_CARTE};
 const sItem orgaRune PROGMEM = {1, orgaTags};
-*/
-/*
+
+
 const t_tag uid_x_data[] = {
   TAG_1,  TAG_2,  TAG_3,  TAG_4,  TAG_5,  TAG_6,  TAG_7,  TAG_8,  TAG_9,  TAG_10,  TAG_11,  TAG_12,  TAG_13,
   TAG_14,  TAG_15,  TAG_16,  TAG_17,  TAG_18,  TAG_19,  TAG_20,  TAG_21,  TAG_22,  TAG_23,  TAG_24,  TAG_25,
   TAG_26,  TAG_CARTE
 };
 const sItem item_x = {27,uid_x_data};
-*/
+
 
 /**
  * export table of items, simplify other process
@@ -104,19 +104,19 @@ const sItemTbl items_table PROGMEM = {
         4, //14,
         {
                 &varselRune,
-//                &ensomhetRune,
+                &ensomhetRune,
                 &styrkeRune,
-//                &stansRune,
-//                &storsaedRune,
-//                &sterkRune,
+                &stansRune,
+                &storsaedRune,
+                &sterkRune,
                 &fjellRune,
-//                &grenselosRune,
+                &grenselosRune,
                 &nodRune,
-//                &herjeRune,
-//                &fornuftRune,
-//                &kjoligRune,
-//                &villskapRune,
-//                &orgaRune
+                &herjeRune,
+                &fornuftRune,
+                &kjoligRune,
+                &villskapRune,
+                &orgaRune
         }
 };
 
