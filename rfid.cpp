@@ -33,7 +33,7 @@ byte *CRfid::GetNewCardId(void) {
 #else
   // debug
   static unsigned long dbg_time = millis();
-  static unsigned char count = 0;
+  static unsigned char count = 3;
 
   if( ((unsigned long)(millis() - dbg_time)) > 5000 )
   {
@@ -70,6 +70,26 @@ byte *CRfid::GetNewCardId(void) {
       count += 1;
       
       count = 0xFE;
+    }
+    else if(3 == count )
+    {
+      // Kjolig - TAG_23 {0xBF, 0x5A, 0x45, 0x39}
+      previous_uid[0] = 0xBF;
+      previous_uid[1] = 0x5A;
+      previous_uid[2] = 0x45;
+      previous_uid[3] = 0x39;
+      lo_new_card = previous_uid;
+      count += 1;
+    }
+    else if(4 == count )
+    {
+      // Fornuft - TAG_21 {0x9A, 0x0D, 0xDB, 0xAB}
+      previous_uid[0] = 0x9A;
+      previous_uid[1] = 0x0D;
+      previous_uid[2] = 0xDB;
+      previous_uid[3] = 0xAB;
+      lo_new_card = previous_uid;
+      count += 1;
     }
     else
     {

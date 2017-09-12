@@ -101,7 +101,7 @@ const sItem item_x = {27,uid_x_data};
  * export table of items, simplify other process
  */
 const sItemTbl items_table PROGMEM = {
-        4, //14,
+        14,
         {
                 &varselRune,
                 &ensomhetRune,

@@ -292,7 +292,8 @@ void loop() {
 
                             default: {
                                 // switch to new directory
-                                Serial.println(F("Finie et continue dans un nouveau répertoire"));
+                                Serial.print(F("Finie et continue dans un nouveau répertoire"));
+                                printHex(&l_next_sound_dir,1);
 
                                 if (l_next_sound_dir <= NB_DIRECTORY) {
                                     current_directory = l_next_sound_dir;

@@ -15,7 +15,7 @@ public:
     bool IsSequenceValid(sSeq *p_in_seq, sSequence **op_seq_result);
 
 private:
-    unsigned char flash_ptr_seq;
+    unsigned short flash_ptr_seq;
     sItemTbl *p_items_tbl;
 };
 

@@ -4,7 +4,7 @@ const sSequence seq0 PROGMEM = { { END_OF_SEQUENCE_RESTART_ID, /* Æthérique */
                                    2, 
                                    { &kjoligRune, &fornuftRune } };
 
-const sSequence seq1 PROGMEM = { { END_OF_SEQUENCE_RESTART_ID, /* Kronien */ 1 /* KjoligFornuft */, false, 120 }, 
+const sSequence seq1 PROGMEM = { { LEVEL_2, /* Kronien */ 1 /* KjoligFornuft */, false, 120 }, 
                                    2, 
                                    { &kjoligRune, &fornuftRune } };
 

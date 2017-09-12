@@ -10,6 +10,12 @@
 // nombre maximum d'item dans une sequence
 #define MAX_SEQ_ITEM  3
 
+// definit les niveau possible
+#define LEVEL_1 1
+#define LEVEL_2 2
+#define LEVEL_3 3
+#define NB_DIRECTORY LEVEL_3
+
 // definit la fin de toute sequence a placer comme directory
 #define END_OF_SEQUENCE_RESTART_ID        0xFD
 #define END_OF_SEQUENCE_CONTINUE_DIR_ID   0xFE
