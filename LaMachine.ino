@@ -19,6 +19,8 @@ bool wait_timeout_flag;
 bool disable_machine;
 bool disable_timer;
 
+sCoolDownElmt cooldown_tbl[MAX_COOLDOWN_TBL_SIZE];
+
 
 sSeq in_seq;
 unsigned char current_directory;
@@ -82,15 +84,11 @@ void setup() {
 #endif
 
     // init config counter to 0
-    /* --SEB--
-    for( unsigned char seq_dir_loop =0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
+    for( unsigned short loop=0; loop<MAX_COOLDOWN_TBL_SIZE; loop++ )
     {
-      for( unsigned char seq_item_loop=0; seq_item_loop<seq_dir[seq_dir_loop]->nb_seq; seq_item_loop++ )
-      {
-        seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter = 0;
-      }
+      cooldown_tbl[loop].p_seq = NULL;
+      cooldown_tbl[loop].minute_counter = 0;
     }
-    */
 
 
     //debug display items table
@@ -221,12 +219,12 @@ void loop() {
                     }
 
                     // check if a result exist
-                    if ((NULL != seq_result) /* --SEB--&& (0 == seq_result->lock_timer_counter)*/ ) {
+                    if ((NULL != seq_result) && (0 == getCooldownCounter(seq_result)) ) {
                         // play sound
 
                         Serial.println(F("Sequence Valide"));
 
-/* --SEB--                        seq_result->lock_timer_counter = seq_result->lock_timer_reload_value; */
+                        setCooldownCounter( seq_result, pgm_read_byte(&seq_result->result.lock_timer_reload_value) );
 
                         if (0xFF != current_directory) {
 
@@ -308,8 +306,7 @@ void loop() {
                     else
                     {
                       // cooldown : UNIQUEMENT SI LA SEQUENCE EST VALIDE ET SOUS LOCK !!!
-                      /* --SEB--
-                      if ((NULL != seq_result) && (0 != seq_result->lock_timer_counter)) 
+                      if( (NULL != seq_result) && (0 != getCooldownCounter(seq_result)) )
                       {
                       
                         Serial.println(F("Cooldown"));
@@ -330,7 +327,6 @@ void loop() {
 #endif
                         wait_timeout_flag = true;
                       }
-                      */
                     }
                 } 
                 else 
@@ -379,23 +375,18 @@ void loop() {
     }
 
     // 1s tick
-    /* --SEB--
-    if (((unsigned long) (millis() - old_tick)) > 1000) 
+    if (((unsigned long) (millis() - old_tick)) > 60000UL) 
     {
-      old_tick += 1000;
-      
-      for( unsigned char seq_dir_loop =0; seq_dir_loop<NB_DIRECTORY; seq_dir_loop++ )
+      old_tick += 60000UL;
+
+      for( unsigned short loop=0; loop<MAX_COOLDOWN_TBL_SIZE; loop++ )
       {
-        for( unsigned char seq_item_loop=0; seq_item_loop<seq_dir[seq_dir_loop]->nb_seq; seq_item_loop++ )
+        if( 0 != cooldown_tbl[loop].minute_counter )
         {
-          if( 0 != seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter )
-          {
-            seq_dir[seq_dir_loop]->p_seq[seq_item_loop]->p_result->lock_timer_counter -= 1;
-          }
+          cooldown_tbl[loop].minute_counter -= 1;
         }
-      }     
+      }
     }
-    */
 }
 
 /**
@@ -426,4 +417,51 @@ void clearSeqAndLeds(void) {
     p_rfid->ClearPrevious();
 }
 
+unsigned char getCooldownCounter( unsigned short i_seq_ptr )
+{
+  unsigned char r_value = 0;
+
+  for( unsigned short loop=0; loop<MAX_COOLDOWN_TBL_SIZE; loop++ )
+  {
+    if( cooldown_tbl[loop].p_seq == i_seq_ptr )
+    {
+      r_value = cooldown_tbl[loop].minute_counter;
+      loop = MAX_COOLDOWN_TBL_SIZE;
+    }
+  }
+
+  return r_value;
+}
+
+void setCooldownCounter( unsigned short i_seq_ptr, unsigned char i_value )
+{
+  unsigned char l_low_value = 0xFF;
+  unsigned short l_low_idx = 0;
+
+  
+  for( unsigned short loop=0; loop<MAX_COOLDOWN_TBL_SIZE; loop++ )
+  {
+    // update low value
+    if( cooldown_tbl[loop].minute_counter < l_low_value )
+    {
+      l_low_value = cooldown_tbl[loop].minute_counter;
+      l_low_idx = loop;
+    }
+    
+    if( 0 == cooldown_tbl[loop].minute_counter )
+    {
+      cooldown_tbl[loop].p_seq = i_seq_ptr;
+      cooldown_tbl[loop].minute_counter = i_value;
+      loop = MAX_COOLDOWN_TBL_SIZE;
+    }
+  }
+
+  if( 0 != l_low_value )
+  {
+    // il n'y a plus de place dans le tableau on ecrase la plus petite valeur
+    cooldown_tbl[l_low_idx].p_seq = i_seq_ptr;
+    cooldown_tbl[l_low_idx].minute_counter = i_value;
+  }
+  
+}
 

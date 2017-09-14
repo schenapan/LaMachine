@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <avr/pgmspace.h>
 
+// taille maximale du tableau cooldown
+#define MAX_COOLDOWN_TBL_SIZE 300
+
 // nombre d'octet d'un tag rfid
 #define UUID_TAG_SIZE 4
 
@@ -41,7 +44,7 @@ typedef struct {
     const unsigned char next_sound_directory_id; // special define to stop machine
     const unsigned char sound_id;
     const bool enable_relay; // true for enable relay
-    const unsigned short lock_timer_reload_value; // default time to wait before apply again this result
+    const unsigned char lock_timer_reload_value; // default time to wait before apply again this result in minute (max 255 = ~4h)
 //    unsigned short lock_timer_counter; 
 } sResult;
 
@@ -63,6 +66,13 @@ typedef struct {
     unsigned char nb;
     sItem *p_item[MAX_SEQ_ITEM];
 } sSeq;
+
+// definition d'un élément du tableau cooldown
+typedef struct {
+  sSequence *p_seq;
+  unsigned char minute_counter;
+} sCoolDownElmt;
+
 
 
 #endif // CUSTOM_TYPEDEF_H

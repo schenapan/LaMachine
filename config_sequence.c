@@ -4,7 +4,7 @@ const sSequence seq0 PROGMEM = { { END_OF_SEQUENCE_RESTART_ID, /* Æthérique */
                                    2, 
                                    { &kjoligRune, &fornuftRune } };
 
-const sSequence seq1 PROGMEM = { { LEVEL_2, /* Kronien */ 1 /* KjoligFornuft */, false, 120 }, 
+const sSequence seq1 PROGMEM = { { END_OF_SEQUENCE_RESTART_ID/*LEVEL_2*/, /* Kronien */ 1 /* KjoligFornuft */, false, 120 }, 
                                    2, 
                                    { &kjoligRune, &fornuftRune } };
 
@@ -40,7 +40,7 @@ const sSequence seq58 PROGMEM = { { END_OF_SEQUENCE_RESTART_ID, /* Divin */ 20 /
                                    2, 
                                    { &fornuftRune, &storsaedRune } };
 
-const sSequence seq66 PROGMEM = { { 1, /* Æthérique */ 23 /* FornuftFjell */, false, 0 }, 
+const sSequence seq66 PROGMEM = { { LEVEL_3, /* Æthérique */ 23 /* FornuftFjell */, true, 0 }, 
                                    2, 
                                    { &fornuftRune, &fjellRune } };
 
@@ -112,7 +112,7 @@ const sSequence seq208 PROGMEM = { { END_OF_SEQUENCE_RESTART_ID, /* Æthérique 
                                    2, 
                                    { &grenselosRune, &styrkeRune } };
 
-const sSequence seq209 PROGMEM = { { 2, /* Divin */ 70 /* GrenselosStyrke */, false, 0 }, 
+const sSequence seq209 PROGMEM = { { LEVEL_1, /* Divin */ 70 /* GrenselosStyrke */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &styrkeRune } };
 

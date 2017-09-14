@@ -33,7 +33,7 @@ byte *CRfid::GetNewCardId(void) {
 #else
   // debug
   static unsigned long dbg_time = millis();
-  static unsigned char count = 3;
+  static unsigned char count = 0;
 
   if( ((unsigned long)(millis() - dbg_time)) > 5000 )
   {
@@ -41,21 +41,21 @@ byte *CRfid::GetNewCardId(void) {
   
     if( 0 == count )
     {
-  		// Nod - TAG_17 {0x85, 0x6D, 0xB6, 0x3B}
-  		previous_uid[0] = 0x85;
-  		previous_uid[1] = 0x6D;
-  		previous_uid[2] = 0xB6;
-  		previous_uid[3] = 0x3B;
-  		lo_new_card = previous_uid;
+      // Kjolig - TAG_23 {0xBF, 0x5A, 0x45, 0x39}
+      previous_uid[0] = 0xBF;
+      previous_uid[1] = 0x5A;
+      previous_uid[2] = 0x45;
+      previous_uid[3] = 0x39;
+      lo_new_card = previous_uid;
       count += 1;
     }
     else if( 1 == count )
     {
-      // Varsel - TAG_1 {0x41, 0x6C, 0x04, 0x6B}
-      previous_uid[0] = 0x41;
-      previous_uid[1] = 0x6C;
-      previous_uid[2] = 0x04;
-      previous_uid[3] = 0x6B;
+      // Fornuft - TAG_21 {0x9A, 0x0D, 0xDB, 0xAB}
+      previous_uid[0] = 0x9A;
+      previous_uid[1] = 0x0D;
+      previous_uid[2] = 0xDB;
+      previous_uid[3] = 0xAB;
       lo_new_card = previous_uid;
       count += 1;
     }
@@ -68,8 +68,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[3] = 0xBB;
       lo_new_card = previous_uid;
       count += 1;
-      
-      count = 0xFE;
     }
     else if(3 == count )
     {
@@ -90,6 +88,48 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[3] = 0xAB;
       lo_new_card = previous_uid;
       count += 1;
+    }
+    else if(10 == count )
+    {
+      // Fornuft - TAG_21 {0x9A, 0x0D, 0xDB, 0xAB}
+      previous_uid[0] = 0x9A;
+      previous_uid[1] = 0x0D;
+      previous_uid[2] = 0xDB;
+      previous_uid[3] = 0xAB;
+      lo_new_card = previous_uid;
+      count += 1;
+    }
+    else if(11 == count )
+    {
+      // Fjell - TAG_13 {0x56, 0x5C, 0x9A, 0xBB}
+      previous_uid[0] = 0x56;
+      previous_uid[1] = 0x5C;
+      previous_uid[2] = 0x9A;
+      previous_uid[3] = 0xBB;
+      lo_new_card = previous_uid;
+      count += 1;
+    }
+    else if(20 == count )
+    {
+      // Grenselos - TAG_16 {0xE6, 0xC5, 0x9E, 0xBB}
+      previous_uid[0] = 0xE6;
+      previous_uid[1] = 0xC5;
+      previous_uid[2] = 0x9E;
+      previous_uid[3] = 0xBB;
+      lo_new_card = previous_uid;
+      count += 1;
+    }
+    else if(21 == count )
+    {
+      // Styrke - TAG_5 {0x36, 0x61, 0x8D, 0xBB}
+      previous_uid[0] = 0x36;
+      previous_uid[1] = 0x61;
+      previous_uid[2] = 0x8D;
+      previous_uid[3] = 0xBB;
+      lo_new_card = previous_uid;
+      count += 1;
+
+      count = 0xFE;
     }
     else
     {
