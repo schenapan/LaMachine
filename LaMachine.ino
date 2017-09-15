@@ -226,103 +226,94 @@ void loop()
           }
 
           // check if a result exist
-          if ((NULL != seq_result) && (0 == getCooldownCounter(seq_result)))
+          if (NULL != seq_result)
           {
-            // play sound
-
-            Serial.println(F("Sequence Valide"));
-
-            setCooldownCounter(seq_result, pgm_read_byte(&seq_result->result.lock_timer_reload_value));
-
-            if (0xFF != current_directory)
+            if (0 == getCooldownCounter(seq_result))
             {
+              // play sound
 
-              // enable relay if needed
-              if (true == pgm_read_byte(&seq_result->result.enable_relay))
+              Serial.println(F("Sequence Valide"));
+
+              setCooldownCounter(seq_result, pgm_read_byte(&seq_result->result.lock_timer_reload_value));
+
+              if (0xFF != current_directory)
               {
-                Serial.println(F("Enable Relay"));
-                digitalWrite(EXT_RELAY_PIN, HIGH);
-                delay(EXT_RELAY_DELAY_MS);
-                digitalWrite(EXT_RELAY_PIN, LOW);
-              }
 
-              Serial.println(F("Play : "));
-              Serial.print(F("directory : "));
-              printHex(&current_directory, 1);
-              Serial.print(F("sound : "));
-              unsigned char l_sound_id = pgm_read_byte(&seq_result->result.sound_id);
-              printHex(&l_sound_id, 1);
+                // enable relay if needed
+                if (true == pgm_read_byte(&seq_result->result.enable_relay))
+                {
+                  Serial.println(F("Enable Relay"));
+                  digitalWrite(EXT_RELAY_PIN, HIGH);
+                  delay(EXT_RELAY_DELAY_MS);
+                  digitalWrite(EXT_RELAY_PIN, LOW);
+                }
+
+                Serial.println(F("Play : "));
+                Serial.print(F("directory : "));
+                printHex(&current_directory, 1);
+                Serial.print(F("sound : "));
+                unsigned char l_sound_id = pgm_read_byte(&seq_result->result.sound_id);
+                printHex(&l_sound_id, 1);
 
 #ifndef NO_MP3_HARDWARE    
-              SpecifyfolderPlay(current_directory, l_sound_id);
+                SpecifyfolderPlay(current_directory, l_sound_id);
 
-              // wait end of read
-              while (QueryPlayStatus() != 0);
+                // wait end of read
+                while (QueryPlayStatus() != 0);
 #endif
-            }
-
-            // switch to next directory
-            unsigned char l_next_sound_dir = pgm_read_byte(&seq_result->result.next_sound_directory_id);
-            switch (l_next_sound_dir)
-            {
-            case END_OF_SEQUENCE_RESTART_ID:
-            {
-              // end of current sequence with success
-              Serial.println(F("Finie et re-initialise la machine"));
-
-              seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[0]));
-              current_directory = 1;
-
-              wait_timeout_flag = true;
-            }
-              break;
-
-            case END_OF_SEQUENCE_CONTINUE_DIR_ID:
-            {
-              // end of current sequence with success
-              Serial.println(F("Finie et continue dans le même repertoire"));
-
-              current_directory = 0xFF;
-
-              wait_timeout_flag = true;
-            }
-              break;
-
-            case END_OF_SEQUENCE_DISABLE_DIR_ID:
-            {
-              // disable machine final ending
-              Serial.println(F("Finie et désactive la machine"));
-
-              current_directory = 0xFF;
-
-              disable_machine = true;
-              wait_timeout_flag = true;
-            }
-              break;
-
-            default:
-            {
-              // switch to new directory
-              Serial.print(F("Finie et continue dans un nouveau répertoire"));
-              printHex(&l_next_sound_dir, 1);
-
-              if (l_next_sound_dir <= NB_DIRECTORY)
-              {
-                current_directory = l_next_sound_dir;
-                seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[l_next_sound_dir - 1]));
               }
 
-              wait_timeout_flag = true;
-            }
-              break;
-            }
-          }
-          else
-          {
-            // cooldown : UNIQUEMENT SI LA SEQUENCE EST VALIDE ET SOUS LOCK !!!
-            if ((NULL != seq_result) && (0 != getCooldownCounter(seq_result)))
-            {
+              // switch to next directory
+              unsigned char l_next_sound_dir = pgm_read_byte(&seq_result->result.next_sound_directory_id);
+              switch (l_next_sound_dir)
+              {
+              case END_OF_SEQUENCE_RESTART_ID:
+                // end of current sequence with success
+                Serial.println(F("Finie et re-initialise la machine"));
 
+                seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[0]));
+                current_directory = 1;
+
+                wait_timeout_flag = true;
+                break;
+
+              case END_OF_SEQUENCE_CONTINUE_DIR_ID:
+                // end of current sequence with success
+                Serial.println(F("Finie et continue dans le même repertoire"));
+
+                current_directory = 0xFF;
+
+                wait_timeout_flag = true;
+                break;
+
+              case END_OF_SEQUENCE_DISABLE_DIR_ID:
+                // disable machine final ending
+                Serial.println(F("Finie et désactive la machine"));
+
+                current_directory = 0xFF;
+
+                disable_machine = true;
+                wait_timeout_flag = true;
+                break;
+
+              default:
+                // switch to new directory
+                Serial.print(F("Finie et continue dans un nouveau répertoire"));
+                printHex(&l_next_sound_dir, 1);
+
+                if (l_next_sound_dir <= NB_DIRECTORY)
+                {
+                  current_directory = l_next_sound_dir;
+                  seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[l_next_sound_dir - 1]));
+                }
+
+                wait_timeout_flag = true;
+
+              }
+            }
+            else
+            {
+              // cooldown : UNIQUEMENT SI LA SEQUENCE EST VALIDE ET SOUS LOCK !!!
               Serial.println(F("Cooldown"));
 
 #ifndef NO_MP3_HARDWARE    
