@@ -47,8 +47,7 @@ void setup()
 
   // Init serial line for debug and needed by RFID library
   Serial.begin(9600);
-  while (!Serial)
-    ;
+  while (!Serial);
 
   // Init SPI for RFID library
   SPI.begin();
@@ -194,9 +193,6 @@ void loop()
     else
     {
       bool is_item_added = false;
-
-      // repousse le temps
-      old_time = millis();
 
       // ajoute le nouvel item
       if (in_seq.nb < MAX_SEQ_ITEM)
@@ -350,6 +346,8 @@ void loop()
           wait_timeout_flag = true;
         }
       }
+      // repousse le temps
+      old_time = millis();
     }
   }
 
