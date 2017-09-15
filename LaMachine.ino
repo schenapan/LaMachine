@@ -161,13 +161,11 @@ void loop()
 
   // Attente d'une carte RFID
   read_nuidPICC = NULL;
-  if (!disable_machine)
+  if (!disable_machine && !wait_timeout_flag)
   {
-    if (!wait_timeout_flag)
-    {
-      read_nuidPICC = p_rfid->GetNewCardId();
-    }
+    read_nuidPICC = p_rfid->GetNewCardId();
   }
+
   if (NULL != read_nuidPICC)
   {
     sItem *lp_item;
@@ -273,8 +271,6 @@ void loop()
 
                 seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[0]));
                 current_directory = 1;
-
-                wait_timeout_flag = true;
                 break;
 
               case END_OF_SEQUENCE_CONTINUE_DIR_ID:
@@ -282,8 +278,6 @@ void loop()
                 Serial.println(F("Finie et continue dans le même repertoire"));
 
                 current_directory = 0xFF;
-
-                wait_timeout_flag = true;
                 break;
 
               case END_OF_SEQUENCE_DISABLE_DIR_ID:
@@ -293,7 +287,6 @@ void loop()
                 current_directory = 0xFF;
 
                 disable_machine = true;
-                wait_timeout_flag = true;
                 break;
 
               default:
@@ -306,9 +299,6 @@ void loop()
                   current_directory = l_next_sound_dir;
                   seq_engine.SetDirectorySequence(pgm_read_ptr(&seq_dir[l_next_sound_dir - 1]));
                 }
-
-                wait_timeout_flag = true;
-
               }
             }
             else
@@ -331,8 +321,8 @@ void loop()
               // wait end of read
               while (QueryPlayStatus() != 0);
 #endif
-              wait_timeout_flag = true;
             }
+            wait_timeout_flag = true;
           }
         }
         else
