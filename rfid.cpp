@@ -47,7 +47,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0x45;
       previous_uid[3] = 0x39;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if( 1 == count )
     {
@@ -57,7 +56,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0xDB;
       previous_uid[3] = 0xAB;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if( 2 == count )
     {
@@ -67,7 +65,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0x8D;
       previous_uid[3] = 0xBB;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if(3 == count )
     {
@@ -77,7 +74,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0x45;
       previous_uid[3] = 0x39;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if(4 == count )
     {
@@ -87,7 +83,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0xDB;
       previous_uid[3] = 0xAB;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if(10 == count )
     {
@@ -97,7 +92,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0xDB;
       previous_uid[3] = 0xAB;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if(11 == count )
     {
@@ -107,7 +101,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0x9A;
       previous_uid[3] = 0xBB;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if(20 == count )
     {
@@ -117,7 +110,6 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0x9E;
       previous_uid[3] = 0xBB;
       lo_new_card = previous_uid;
-      count += 1;
     }
     else if(21 == count )
     {
@@ -127,14 +119,10 @@ byte *CRfid::GetNewCardId(void) {
       previous_uid[2] = 0x8D;
       previous_uid[3] = 0xBB;
       lo_new_card = previous_uid;
-      count += 1;
+    }
 
-      count = 0xFE;
-    }
-    else
-    {
-      count += 1;
-    }
+    ++count;
+    count %= 22;
     
   }
 #endif
