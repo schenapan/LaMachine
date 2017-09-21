@@ -49,36 +49,56 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sSequence **op_seq_result)
   unsigned char l_nb_sequence = pgm_read_byte(flash_ptr_seq + offsetof(sDirSequence, nb_seq));
   for (unsigned char seq_loop = 0; seq_loop < l_nb_sequence; seq_loop++)
   {
-    // regarde pour chaque item de la séquence entrante si elle correspond
+    unsigned char matchingCount = 0;
+    unsigned short lp_seq = pgm_read_ptr(&(((sDirSequence*) flash_ptr_seq)->p_seq[seq_loop]));
     for (unsigned char item_loop = 0; item_loop < p_in_seq->nb; item_loop++)
     {
-      // si l'item ne correspond pas, on sort de cette séquence
-      unsigned short lp_seq = pgm_read_ptr(&(((sDirSequence*) flash_ptr_seq)->p_seq[seq_loop]));
-      unsigned short p_item = pgm_read_ptr(&((sSequence*) lp_seq)->p_items[item_loop]);
-      if (p_item == p_in_seq->p_item[item_loop])
-      {
-        // si il s'agit du dernier item de la séquence, on a trouver un résultat
-        if (item_loop == p_in_seq->nb - 1)
-        {
-          unsigned char l_nb_item = pgm_read_byte(&(((sSequence*) lp_seq)->nb_item));
-
-          // valide la séquence
-          o_valid = true;
-
-          if (item_loop == l_nb_item - 1)
-          {
-            *op_seq_result = (sSequence*) lp_seq;
-            seq_loop = l_nb_sequence;
-            item_loop = p_in_seq->nb;
-          }
+      bool match = false;
+      for (unsigned char i = 0; i < pgm_read_ptr(&((sSequence*) lp_seq)->nb_item); ++i) {
+        unsigned short p_item = pgm_read_ptr(&((sSequence*) lp_seq)->p_items[i]);
+        if (p_in_seq->p_item[item_loop] == p_item) {
+          match = true;
+          break;
         }
       }
-      else
-      {
-        // pas de coresspondance, on doit passer a la séquence suivante
-        item_loop = p_in_seq->nb;
+      if (match) {
+        ++matchingCount;
+      } else {
+        break;
       }
     }
+    if(p_in_seq->nb == matchingCount) {
+      // valide la séquence
+      o_valid = true;
+      unsigned char l_nb_item = pgm_read_byte(&(((sSequence*) lp_seq)->nb_item));
+      if (p_in_seq->nb == l_nb_item) {
+        *op_seq_result = (sSequence*) lp_seq;
+        break;
+      }
+    }
+
+//      {
+//        // si il s'agit du dernier item de la séquence, on a trouver un résultat
+//        if (item_loop == p_in_seq->nb - 1)
+//        {
+//
+//
+//
+//
+//          if (item_loop == l_nb_item - 1)
+//          {
+//
+//            seq_loop = l_nb_sequence;
+//            item_loop = p_in_seq->nb;
+//          }
+//        }
+//      }
+//      else
+//      {
+//        // pas de coresspondance, on doit passer a la séquence suivante
+//        item_loop = p_in_seq->nb;
+//      }
+//    }
   }
   return o_valid;
 }
