@@ -44,7 +44,6 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sSequence **op_seq_result)
 {
   bool o_valid = false;
   *op_seq_result = NULL;
-
   // parcours par séquence
   unsigned char l_nb_sequence = pgm_read_byte(flash_ptr_seq + offsetof(sDirSequence, nb_seq));
   for (unsigned char seq_loop = 0; seq_loop < l_nb_sequence; seq_loop++)
@@ -54,7 +53,7 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sSequence **op_seq_result)
     for (unsigned char item_loop = 0; item_loop < p_in_seq->nb; item_loop++)
     {
       bool match = false;
-      for (unsigned char i = 0; i < pgm_read_ptr(&((sSequence*) lp_seq)->nb_item); ++i) {
+      for (unsigned char i = 0; i < pgm_read_byte(&((sSequence*) lp_seq)->nb_item); ++i) {
         unsigned short p_item = pgm_read_ptr(&((sSequence*) lp_seq)->p_items[i]);
         if (p_in_seq->p_item[item_loop] == p_item) {
           match = true;
@@ -76,29 +75,6 @@ bool CEngine::IsSequenceValid(sSeq *p_in_seq, sSequence **op_seq_result)
         break;
       }
     }
-
-//      {
-//        // si il s'agit du dernier item de la séquence, on a trouver un résultat
-//        if (item_loop == p_in_seq->nb - 1)
-//        {
-//
-//
-//
-//
-//          if (item_loop == l_nb_item - 1)
-//          {
-//
-//            seq_loop = l_nb_sequence;
-//            item_loop = p_in_seq->nb;
-//          }
-//        }
-//      }
-//      else
-//      {
-//        // pas de coresspondance, on doit passer a la séquence suivante
-//        item_loop = p_in_seq->nb;
-//      }
-//    }
   }
   return o_valid;
 }

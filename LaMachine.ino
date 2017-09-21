@@ -357,16 +357,14 @@ void loop()
     comp_time = (unsigned long) (millis() - old_time);
     if (comp_time > 5000)
     {
-      // desactive la machine
+      // sequence incomplète
       clearSeqAndLeds();
       wait_timeout_flag = false;
       if (disable_machine)
       {
+      // desactive la machine
         disable_timer = true;
       }
-
-      // sequence incomplète
-
     }
   }
 

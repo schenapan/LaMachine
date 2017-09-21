@@ -32,12 +32,13 @@ byte *CRfid::GetNewCardId(void) {
     }
 #else
   // debug
+  #define WAIT_TIME 4000
   static unsigned long dbg_time = millis();
   static unsigned char count = 0;
 
-  if( ((unsigned long)(millis() - dbg_time)) > 5000 )
+  if( ((unsigned long)(millis() - dbg_time)) > WAIT_TIME )
   {
-    dbg_time += 5000; 
+    dbg_time += WAIT_TIME;
   
     if( 0 == count )
     {
@@ -113,11 +114,11 @@ byte *CRfid::GetNewCardId(void) {
     }
     else if(21 == count )
     {
-      // Styrke - TAG_5 {0x36, 0x61, 0x8D, 0xBB}
-      previous_uid[0] = 0x36;
-      previous_uid[1] = 0x61;
-      previous_uid[2] = 0x8D;
-      previous_uid[3] = 0xBB;
+      // Varsel - TAG_27 {0xFC, 0xC3, 0xEE, 0x2B}
+      previous_uid[0] = 0xFC;
+      previous_uid[1] = 0xC3;
+      previous_uid[2] = 0xEE;
+      previous_uid[3] = 0x2B;
       lo_new_card = previous_uid;
     }
 
