@@ -752,7 +752,7 @@ const sSequence seq233 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    1, 
                                    { &orgaRune } };
 
-const sSequence seq234 PROGMEM = { { 1, /* Divin */ 1 /* KjoligFornuftEnsomhet */, false, 0 }, 
+const sSequence seq234 PROGMEM = { { 1, /* Divin */ 80 /* KjoligFornuftEnsomhet */, false, 0 }, 
                                    3, 
                                    { &kjoligRune, &fornuftRune, &ensomhetRune } };
 
