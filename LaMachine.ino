@@ -17,6 +17,8 @@ bool wait_timeout_flag;
 bool disable_machine;
 bool disable_timer;
 
+unsigned int randomInterCoolDown = random(20000);
+
 sCoolDownElmt cooldown_tbl[MAX_COOLDOWN_TBL_SIZE];
 
 sSeq in_seq;
@@ -222,6 +224,7 @@ void loop()
           // check if a result exist
           if (NULL != seq_result)
           {
+        	randomInterCoolDown = random(20000);
             if (0 == getCooldownCounter(seq_result))
             {
               // play sound
@@ -232,15 +235,6 @@ void loop()
 
               if (0xFF != current_directory)
               {
-
-                // enable relay if needed
-                if (true == pgm_read_byte(&seq_result->result.enable_relay))
-                {
-                  Serial.println(F("Enable Relay"));
-                  digitalWrite(EXT_RELAY_PIN, HIGH);
-                  delay(EXT_RELAY_DELAY_MS);
-                  digitalWrite(EXT_RELAY_PIN, LOW);
-                }
 
                 Serial.println(F("Play : "));
                 Serial.print(F("directory : "));
@@ -253,7 +247,14 @@ void loop()
                 SpecifyfolderPlay(current_directory, l_sound_id);
 
                 // wait end of read
+                // enable relay if needed
+				if (true == pgm_read_byte(&seq_result->result.enable_relay))
+				{
+				  Serial.println(F("Enable Relay"));
+				  digitalWrite(EXT_RELAY_PIN, HIGH);
+				}
                 while (QueryPlayStatus() != 0);
+				digitalWrite(EXT_RELAY_PIN, LOW);
 #endif
               }
 
@@ -323,7 +324,7 @@ void loop()
         }
         else
         {
-          // invlid sequence
+          // invalid sequence
 
           Serial.println(F("Mauvaise séquence"));
 
@@ -355,7 +356,7 @@ void loop()
   if (!disable_timer)
   {
     comp_time = (unsigned long) (millis() - old_time);
-    if (comp_time > 5000)
+    if (comp_time > 15000 + randomInterCoolDown)
     {
       // sequence incomplète
       clearSeqAndLeds();
