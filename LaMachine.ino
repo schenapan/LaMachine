@@ -273,7 +273,7 @@ void loop()
                 // end of current sequence with success
                 Serial.println(F("Finie et continue dans le même repertoire"));
 
-                current_directory = 0xFF;
+//                current_directory = 0xFF;
                 break;
 
               case END_OF_SEQUENCE_DISABLE_DIR_ID:
