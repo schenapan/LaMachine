@@ -1,6 +1,6 @@
 #include "config_sequence.h"
 
-const sSequence seq0 PROGMEM = { { 1, /* Æthérique */ 1 /* KjoligFornuft */, false, 0 }, 
+const sSequence seq0 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* KjoligFornuft */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &fornuftRune } };
 
@@ -16,15 +16,15 @@ const sSequence seq3 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthériq
                                    2, 
                                    { &kjoligRune, &villskapRune } };
 
-const sSequence seq4 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 2 /* KjoligVillskap */, false, 0 }, 
+const sSequence seq4 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligVillskap */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &villskapRune } };
 
-const sSequence seq5 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 2 /* KjoligVillskap */, false, 0 }, 
+const sSequence seq5 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* KjoligVillskap */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &villskapRune } };
 
-const sSequence seq6 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 3 /* KjoligHerje */, false, 0 }, 
+const sSequence seq6 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* KjoligHerje */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &herjeRune } };
 
@@ -32,15 +32,15 @@ const sSequence seq7 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 
                                    2, 
                                    { &kjoligRune, &herjeRune } };
 
-const sSequence seq8 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 3 /* KjoligHerje */, false, 0 }, 
+const sSequence seq8 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* KjoligHerje */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &herjeRune } };
 
-const sSequence seq9 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 4 /* KjoligEnsomhet */, false, 0 }, 
+const sSequence seq9 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* KjoligEnsomhet */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &ensomhetRune } };
 
-const sSequence seq10 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 4 /* KjoligEnsomhet */, false, 0 }, 
+const sSequence seq10 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligEnsomhet */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &ensomhetRune } };
 
@@ -76,7 +76,7 @@ const sSequence seq18 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthéri
                                    2, 
                                    { &kjoligRune, &stansRune } };
 
-const sSequence seq19 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 7 /* KjoligStans */, false, 0 }, 
+const sSequence seq19 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligStans */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &stansRune } };
 
@@ -84,11 +84,11 @@ const sSequence seq20 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &kjoligRune, &stansRune } };
 
-const sSequence seq21 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 8 /* KjoligGrenselos */, false, 0 }, 
+const sSequence seq21 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* KjoligGrenselos */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &grenselosRune } };
 
-const sSequence seq22 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 8 /* KjoligGrenselos */, false, 0 }, 
+const sSequence seq22 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligGrenselos */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &grenselosRune } };
 
@@ -100,7 +100,7 @@ const sSequence seq24 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthéri
                                    2, 
                                    { &kjoligRune, &storsaedRune } };
 
-const sSequence seq25 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 9 /* KjoligStorsaed */, false, 0 }, 
+const sSequence seq25 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligStorsaed */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &storsaedRune } };
 
@@ -108,7 +108,7 @@ const sSequence seq26 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &kjoligRune, &storsaedRune } };
 
-const sSequence seq27 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 10 /* KjoligNod */, false, 0 }, 
+const sSequence seq27 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* KjoligNod */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &nodRune } };
 
@@ -124,11 +124,11 @@ const sSequence seq30 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthéri
                                    2, 
                                    { &kjoligRune, &styrkeRune } };
 
-const sSequence seq31 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 11 /* KjoligStyrke */, false, 0 }, 
+const sSequence seq31 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligStyrke */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &styrkeRune } };
 
-const sSequence seq32 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 11 /* KjoligStyrke */, false, 0 }, 
+const sSequence seq32 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* KjoligStyrke */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &styrkeRune } };
 
@@ -144,7 +144,7 @@ const sSequence seq35 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &kjoligRune, &fjellRune } };
 
-const sSequence seq36 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 13 /* FornuftVillskap */, false, 0 }, 
+const sSequence seq36 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* FornuftVillskap */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &villskapRune } };
 
@@ -156,7 +156,7 @@ const sSequence seq38 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &fornuftRune, &villskapRune } };
 
-const sSequence seq39 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 14 /* FornuftHerje */, false, 0 }, 
+const sSequence seq39 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* FornuftHerje */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &herjeRune } };
 
@@ -180,11 +180,11 @@ const sSequence seq44 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &fornuftRune, &ensomhetRune } };
 
-const sSequence seq45 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 16 /* FornuftSterk */, false, 0 }, 
+const sSequence seq45 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* FornuftSterk */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &sterkRune } };
 
-const sSequence seq46 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 16 /* FornuftSterk */, false, 0 }, 
+const sSequence seq46 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* FornuftSterk */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &sterkRune } };
 
@@ -204,11 +204,11 @@ const sSequence seq50 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &fornuftRune, &varselRune } };
 
-const sSequence seq51 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 18 /* FornuftStans */, false, 0 }, 
+const sSequence seq51 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* FornuftStans */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &stansRune } };
 
-const sSequence seq52 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 18 /* FornuftStans */, false, 0 }, 
+const sSequence seq52 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* FornuftStans */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &stansRune } };
 
@@ -216,11 +216,11 @@ const sSequence seq53 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &fornuftRune, &stansRune } };
 
-const sSequence seq54 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 19 /* FornuftGrenselos */, false, 0 }, 
+const sSequence seq54 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* FornuftGrenselos */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &grenselosRune } };
 
-const sSequence seq55 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 19 /* FornuftGrenselos */, false, 0 }, 
+const sSequence seq55 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* FornuftGrenselos */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &grenselosRune } };
 
@@ -236,7 +236,7 @@ const sSequence seq58 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */
                                    2, 
                                    { &fornuftRune, &storsaedRune } };
 
-const sSequence seq59 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 20 /* FornuftStorsaed */, false, 0 }, 
+const sSequence seq59 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* FornuftStorsaed */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &storsaedRune } };
 
@@ -252,7 +252,7 @@ const sSequence seq62 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */
                                    2, 
                                    { &fornuftRune, &nodRune } };
 
-const sSequence seq63 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 22 /* FornuftStyrke */, false, 0 }, 
+const sSequence seq63 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* FornuftStyrke */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &styrkeRune } };
 
@@ -260,7 +260,7 @@ const sSequence seq64 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */
                                    2, 
                                    { &fornuftRune, &styrkeRune } };
 
-const sSequence seq65 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 22 /* FornuftStyrke */, false, 0 }, 
+const sSequence seq65 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* FornuftStyrke */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &styrkeRune } };
 
@@ -272,7 +272,7 @@ const sSequence seq67 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &fornuftRune, &fjellRune } };
 
-const sSequence seq68 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 23 /* FornuftFjell */, false, 0 }, 
+const sSequence seq68 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* FornuftFjell */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &fjellRune } };
 
@@ -300,7 +300,7 @@ const sSequence seq74 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */
                                    2, 
                                    { &villskapRune, &ensomhetRune } };
 
-const sSequence seq75 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 26 /* VillskapSterk */, false, 0 }, 
+const sSequence seq75 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* VillskapSterk */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &sterkRune } };
 
@@ -316,19 +316,19 @@ const sSequence seq78 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthéri
                                    2, 
                                    { &villskapRune, &varselRune } };
 
-const sSequence seq79 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 27 /* VillskapVarsel */, false, 0 }, 
+const sSequence seq79 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* VillskapVarsel */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &varselRune } };
 
-const sSequence seq80 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 27 /* VillskapVarsel */, false, 0 }, 
+const sSequence seq80 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* VillskapVarsel */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &varselRune } };
 
-const sSequence seq81 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 28 /* VillskapStans */, false, 0 }, 
+const sSequence seq81 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* VillskapStans */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &stansRune } };
 
-const sSequence seq82 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 28 /* VillskapStans */, false, 0 }, 
+const sSequence seq82 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* VillskapStans */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &stansRune } };
 
@@ -360,7 +360,7 @@ const sSequence seq89 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien 
                                    2, 
                                    { &villskapRune, &storsaedRune } };
 
-const sSequence seq90 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 31 /* VillskapNod */, false, 0 }, 
+const sSequence seq90 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* VillskapNod */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &nodRune } };
 
@@ -368,15 +368,15 @@ const sSequence seq91 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */
                                    2, 
                                    { &villskapRune, &nodRune } };
 
-const sSequence seq92 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 31 /* VillskapNod */, false, 0 }, 
+const sSequence seq92 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* VillskapNod */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &nodRune } };
 
-const sSequence seq93 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 32 /* VillskapStyrke */, false, 0 }, 
+const sSequence seq93 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* VillskapStyrke */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &styrkeRune } };
 
-const sSequence seq94 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 32 /* VillskapStyrke */, false, 0 }, 
+const sSequence seq94 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* VillskapStyrke */, false, 0 }, 
                                    2, 
                                    { &villskapRune, &styrkeRune } };
 
@@ -412,15 +412,15 @@ const sSequence seq102 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &herjeRune, &sterkRune } };
 
-const sSequence seq103 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 35 /* HerjeSterk */, false, 0 }, 
+const sSequence seq103 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* HerjeSterk */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &sterkRune } };
 
-const sSequence seq104 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 35 /* HerjeSterk */, false, 0 }, 
+const sSequence seq104 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* HerjeSterk */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &sterkRune } };
 
-const sSequence seq105 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 36 /* HerjeVarsel */, false, 0 }, 
+const sSequence seq105 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* HerjeVarsel */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &varselRune } };
 
@@ -428,11 +428,11 @@ const sSequence seq106 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &herjeRune, &varselRune } };
 
-const sSequence seq107 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 36 /* HerjeVarsel */, false, 0 }, 
+const sSequence seq107 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* HerjeVarsel */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &varselRune } };
 
-const sSequence seq108 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 37 /* HerjeStans */, false, 0 }, 
+const sSequence seq108 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* HerjeStans */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &stansRune } };
 
@@ -444,11 +444,11 @@ const sSequence seq110 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &herjeRune, &stansRune } };
 
-const sSequence seq111 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 38 /* HerjeGrenselos */, false, 0 }, 
+const sSequence seq111 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* HerjeGrenselos */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &grenselosRune } };
 
-const sSequence seq112 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 38 /* HerjeGrenselos */, false, 0 }, 
+const sSequence seq112 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* HerjeGrenselos */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &grenselosRune } };
 
@@ -456,7 +456,7 @@ const sSequence seq113 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &herjeRune, &grenselosRune } };
 
-const sSequence seq114 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 39 /* HerjeStorsaed */, false, 0 }, 
+const sSequence seq114 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* HerjeStorsaed */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &storsaedRune } };
 
@@ -472,7 +472,7 @@ const sSequence seq117 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &herjeRune, &nodRune } };
 
-const sSequence seq118 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 40 /* HerjeNod */, false, 0 }, 
+const sSequence seq118 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* HerjeNod */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &nodRune } };
 
@@ -480,11 +480,11 @@ const sSequence seq119 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &herjeRune, &nodRune } };
 
-const sSequence seq120 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 41 /* HerjeStyrke */, false, 0 }, 
+const sSequence seq120 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* HerjeStyrke */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &styrkeRune } };
 
-const sSequence seq121 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 41 /* HerjeStyrke */, false, 0 }, 
+const sSequence seq121 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* HerjeStyrke */, false, 0 }, 
                                    2, 
                                    { &herjeRune, &styrkeRune } };
 
@@ -516,11 +516,11 @@ const sSequence seq128 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &ensomhetRune, &varselRune } };
 
-const sSequence seq129 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 44 /* EnsomhetStans */, false, 0 }, 
+const sSequence seq129 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* EnsomhetStans */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &stansRune } };
 
-const sSequence seq130 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 44 /* EnsomhetStans */, false, 0 }, 
+const sSequence seq130 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* EnsomhetStans */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &stansRune } };
 
@@ -552,11 +552,11 @@ const sSequence seq137 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &ensomhetRune, &storsaedRune } };
 
-const sSequence seq138 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 47 /* EnsomhetNod */, false, 0 }, 
+const sSequence seq138 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* EnsomhetNod */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &nodRune } };
 
-const sSequence seq139 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 47 /* EnsomhetNod */, false, 0 }, 
+const sSequence seq139 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* EnsomhetNod */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &nodRune } };
 
@@ -568,15 +568,15 @@ const sSequence seq141 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &ensomhetRune, &styrkeRune } };
 
-const sSequence seq142 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 48 /* EnsomhetStyrke */, false, 0 }, 
+const sSequence seq142 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* EnsomhetStyrke */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &styrkeRune } };
 
-const sSequence seq143 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 48 /* EnsomhetStyrke */, false, 0 }, 
+const sSequence seq143 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* EnsomhetStyrke */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &styrkeRune } };
 
-const sSequence seq144 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 49 /* EnsomhetFjell */, false, 0 }, 
+const sSequence seq144 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* EnsomhetFjell */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &fjellRune } };
 
@@ -584,7 +584,7 @@ const sSequence seq145 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &ensomhetRune, &fjellRune } };
 
-const sSequence seq146 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 49 /* EnsomhetFjell */, false, 0 }, 
+const sSequence seq146 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* EnsomhetFjell */, false, 0 }, 
                                    2, 
                                    { &ensomhetRune, &fjellRune } };
 
@@ -628,11 +628,11 @@ const sSequence seq156 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &sterkRune, &storsaedRune } };
 
-const sSequence seq157 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 53 /* SterkStorsaed */, false, 0 }, 
+const sSequence seq157 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* SterkStorsaed */, false, 0 }, 
                                    2, 
                                    { &sterkRune, &storsaedRune } };
 
-const sSequence seq158 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 53 /* SterkStorsaed */, false, 0 }, 
+const sSequence seq158 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* SterkStorsaed */, false, 0 }, 
                                    2, 
                                    { &sterkRune, &storsaedRune } };
 
@@ -648,7 +648,7 @@ const sSequence seq161 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &sterkRune, &nodRune } };
 
-const sSequence seq162 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 55 /* SterkStyrke */, false, 0 }, 
+const sSequence seq162 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* SterkStyrke */, false, 0 }, 
                                    2, 
                                    { &sterkRune, &styrkeRune } };
 
@@ -660,11 +660,11 @@ const sSequence seq164 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &sterkRune, &styrkeRune } };
 
-const sSequence seq165 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 56 /* SterkFjell */, false, 0 }, 
+const sSequence seq165 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* SterkFjell */, false, 0 }, 
                                    2, 
                                    { &sterkRune, &fjellRune } };
 
-const sSequence seq166 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 56 /* SterkFjell */, false, 0 }, 
+const sSequence seq166 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* SterkFjell */, false, 0 }, 
                                    2, 
                                    { &sterkRune, &fjellRune } };
 
@@ -684,11 +684,11 @@ const sSequence seq170 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &varselRune, &stansRune } };
 
-const sSequence seq171 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 58 /* VarselGrenselos */, false, 0 }, 
+const sSequence seq171 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* VarselGrenselos */, false, 0 }, 
                                    2, 
                                    { &varselRune, &grenselosRune } };
 
-const sSequence seq172 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 58 /* VarselGrenselos */, false, 0 }, 
+const sSequence seq172 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* VarselGrenselos */, false, 0 }, 
                                    2, 
                                    { &varselRune, &grenselosRune } };
 
@@ -716,7 +716,7 @@ const sSequence seq178 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &varselRune, &nodRune } };
 
-const sSequence seq179 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 60 /* VarselNod */, false, 0 }, 
+const sSequence seq179 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* VarselNod */, false, 0 }, 
                                    2, 
                                    { &varselRune, &nodRune } };
 
@@ -728,7 +728,7 @@ const sSequence seq181 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &varselRune, &styrkeRune } };
 
-const sSequence seq182 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 61 /* VarselStyrke */, false, 0 }, 
+const sSequence seq182 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* VarselStyrke */, false, 0 }, 
                                    2, 
                                    { &varselRune, &styrkeRune } };
 
@@ -744,11 +744,11 @@ const sSequence seq185 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &varselRune, &fjellRune } };
 
-const sSequence seq186 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 63 /* GrenselosStans */, false, 0 }, 
+const sSequence seq186 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* GrenselosStans */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &stansRune } };
 
-const sSequence seq187 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 63 /* GrenselosStans */, false, 0 }, 
+const sSequence seq187 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* GrenselosStans */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &stansRune } };
 
@@ -756,7 +756,7 @@ const sSequence seq188 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &grenselosRune, &stansRune } };
 
-const sSequence seq189 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 64 /* StansStorsaed */, false, 0 }, 
+const sSequence seq189 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* StansStorsaed */, false, 0 }, 
                                    2, 
                                    { &stansRune, &storsaedRune } };
 
@@ -764,7 +764,7 @@ const sSequence seq190 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &stansRune, &storsaedRune } };
 
-const sSequence seq191 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 64 /* StansStorsaed */, false, 0 }, 
+const sSequence seq191 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* StansStorsaed */, false, 0 }, 
                                    2, 
                                    { &stansRune, &storsaedRune } };
 
@@ -772,11 +772,11 @@ const sSequence seq192 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &stansRune, &nodRune } };
 
-const sSequence seq193 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 65 /* StansNod */, false, 0 }, 
+const sSequence seq193 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* StansNod */, false, 0 }, 
                                    2, 
                                    { &stansRune, &nodRune } };
 
-const sSequence seq194 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 65 /* StansNod */, false, 0 }, 
+const sSequence seq194 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* StansNod */, false, 0 }, 
                                    2, 
                                    { &stansRune, &nodRune } };
 
@@ -784,7 +784,7 @@ const sSequence seq195 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &stansRune, &styrkeRune } };
 
-const sSequence seq196 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 66 /* StansStyrke */, false, 0 }, 
+const sSequence seq196 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* StansStyrke */, false, 0 }, 
                                    2, 
                                    { &stansRune, &styrkeRune } };
 
@@ -792,11 +792,11 @@ const sSequence seq197 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &stansRune, &styrkeRune } };
 
-const sSequence seq198 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 67 /* StansFjell */, false, 0 }, 
+const sSequence seq198 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* StansFjell */, false, 0 }, 
                                    2, 
                                    { &stansRune, &fjellRune } };
 
-const sSequence seq199 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 67 /* StansFjell */, false, 0 }, 
+const sSequence seq199 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* StansFjell */, false, 0 }, 
                                    2, 
                                    { &stansRune, &fjellRune } };
 
@@ -808,11 +808,11 @@ const sSequence seq201 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &grenselosRune, &storsaedRune } };
 
-const sSequence seq202 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 68 /* GrenselosStorsaed */, false, 0 }, 
+const sSequence seq202 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* GrenselosStorsaed */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &storsaedRune } };
 
-const sSequence seq203 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 68 /* GrenselosStorsaed */, false, 0 }, 
+const sSequence seq203 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* GrenselosStorsaed */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &storsaedRune } };
 
@@ -820,15 +820,15 @@ const sSequence seq204 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &grenselosRune, &nodRune } };
 
-const sSequence seq205 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 69 /* GrenselosNod */, false, 0 }, 
+const sSequence seq205 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* GrenselosNod */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &nodRune } };
 
-const sSequence seq206 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 69 /* GrenselosNod */, false, 0 }, 
+const sSequence seq206 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* GrenselosNod */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &nodRune } };
 
-const sSequence seq207 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 70 /* GrenselosStyrke */, false, 0 }, 
+const sSequence seq207 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* GrenselosStyrke */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &styrkeRune } };
 
@@ -844,7 +844,7 @@ const sSequence seq210 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &grenselosRune, &fjellRune } };
 
-const sSequence seq211 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 71 /* GrenselosFjell */, false, 0 }, 
+const sSequence seq211 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* GrenselosFjell */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &fjellRune } };
 
@@ -860,7 +860,7 @@ const sSequence seq214 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin *
                                    2, 
                                    { &storsaedRune, &nodRune } };
 
-const sSequence seq215 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 72 /* StorsaedNod */, false, 0 }, 
+const sSequence seq215 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* StorsaedNod */, false, 0 }, 
                                    2, 
                                    { &storsaedRune, &nodRune } };
 
@@ -868,7 +868,7 @@ const sSequence seq216 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthér
                                    2, 
                                    { &storsaedRune, &styrkeRune } };
 
-const sSequence seq217 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 73 /* StorsaedStyrke */, false, 0 }, 
+const sSequence seq217 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* StorsaedStyrke */, false, 0 }, 
                                    2, 
                                    { &storsaedRune, &styrkeRune } };
 
@@ -888,11 +888,11 @@ const sSequence seq221 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &storsaedRune, &fjellRune } };
 
-const sSequence seq222 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 75 /* NodStyrke */, false, 0 }, 
+const sSequence seq222 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* NodStyrke */, false, 0 }, 
                                    2, 
                                    { &nodRune, &styrkeRune } };
 
-const sSequence seq223 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 75 /* NodStyrke */, false, 0 }, 
+const sSequence seq223 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* NodStyrke */, false, 0 }, 
                                    2, 
                                    { &nodRune, &styrkeRune } };
 
