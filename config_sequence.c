@@ -8,14 +8,6 @@ const sSequence seq1 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien *
                                    2, 
                                    { &kjoligRune, &fornuftRune } };
 
-const sSequence seq3 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* KjoligVillskap */, false, 0 }, 
-                                   2, 
-                                   { &kjoligRune, &villskapRune } };
-
-const sSequence seq4 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien */ 255 /* KjoligVillskap */, false, 0 }, 
-                                   2, 
-                                   { &kjoligRune, &villskapRune } };
-
 const sSequence seq5 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthérique */ 255 /* KjoligHerje */, false, 0 }, 
                                    2, 
                                    { &kjoligRune, &herjeRune } };
@@ -156,7 +148,7 @@ const sSequence seq48 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Æthéri
                                    2, 
                                    { &fornuftRune, &stansRune } };
 
-const sSequence seq49 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* FornuftStans */, false, 0 }, 
+const sSequence seq49 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 18 /* FornuftStans */, false, 0 }, 
                                    2, 
                                    { &fornuftRune, &stansRune } };
 
@@ -664,7 +656,7 @@ const sSequence seq208 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Kronien
                                    2, 
                                    { &grenselosRune, &fjellRune } };
 
-const sSequence seq209 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 71 /* GrenselosFjell */, false, 0 }, 
+const sSequence seq209 PROGMEM = { { END_OF_SEQUENCE_CONTINUE_DIR_ID, /* Divin */ 255 /* GrenselosFjell */, false, 0 }, 
                                    2, 
                                    { &grenselosRune, &fjellRune } };
 
@@ -757,9 +749,9 @@ const sSequence seq234 PROGMEM = { { 1, /* Divin */ 80 /* KjoligFornuftEnsomhet 
                                    { &kjoligRune, &fornuftRune, &ensomhetRune } };
 
 const sDirSequence sequencesDir1 PROGMEM = {
-	64,
+	63,
 	{
-		&seq1, &seq4, &seq7, &seq9, &seq12, &seq18, &seq21, &seq24, &seq27, &seq30, &seq36, &seq39, &seq41, &seq43, &seq50, &seq53, &seq56, &seq62, &seq64, &seq68, &seq70, &seq74, &seq77, &seq80, &seq89, &seq92, &seq101, &seq104, &seq106, &seq110, &seq113, &seq116, &seq118, &seq125, &seq128, &seq137, &seq140, &seq143, &seq146, &seq155, &seq158, &seq160, &seq164, &seq165, &seq170, &seq176, &seq179, &seq180, &seq184, &seq188, &seq191, &seq194, &seq197, &seq200, &seq203, &seq204, &seq208, &seq212, &seq215, &seq218, &seq221, &seq227, &seq230, &seq231
+		&seq1, &seq7, &seq9, &seq12, &seq18, &seq21, &seq24, &seq27, &seq30, &seq36, &seq39, &seq41, &seq43, &seq50, &seq53, &seq56, &seq62, &seq64, &seq68, &seq70, &seq74, &seq77, &seq80, &seq89, &seq92, &seq101, &seq104, &seq106, &seq110, &seq113, &seq116, &seq118, &seq125, &seq128, &seq137, &seq140, &seq143, &seq146, &seq155, &seq158, &seq160, &seq164, &seq165, &seq170, &seq176, &seq179, &seq180, &seq184, &seq188, &seq191, &seq194, &seq197, &seq200, &seq203, &seq204, &seq208, &seq212, &seq215, &seq218, &seq221, &seq227, &seq230, &seq231
 	}
 };
 
@@ -771,9 +763,9 @@ const sDirSequence sequencesDir2 PROGMEM = {
 };
 
 const sDirSequence sequencesDir3 PROGMEM = {
-	62,
+	61,
 	{
-		&seq3, &seq6, &seq11, &seq17, &seq20, &seq23, &seq26, &seq29, &seq35, &seq38, &seq44, &seq49, &seq52, &seq55, &seq61, &seq65, &seq67, &seq71, &seq73, &seq76, &seq79, &seq88, &seq91, &seq100, &seq103, &seq105, &seq109, &seq112, &seq115, &seq119, &seq123, &seq127, &seq136, &seq139, &seq142, &seq145, &seq154, &seq157, &seq159, &seq163, &seq167, &seq169, &seq175, &seq178, &seq182, &seq185, &seq187, &seq190, &seq193, &seq196, &seq199, &seq202, &seq206, &seq209, &seq211, &seq214, &seq217, &seq220, &seq226, &seq229, &seq233, &seq234
+		&seq6, &seq11, &seq17, &seq20, &seq23, &seq26, &seq29, &seq35, &seq38, &seq44, &seq49, &seq52, &seq55, &seq61, &seq65, &seq67, &seq71, &seq73, &seq76, &seq79, &seq88, &seq91, &seq100, &seq103, &seq105, &seq109, &seq112, &seq115, &seq119, &seq123, &seq127, &seq136, &seq139, &seq142, &seq145, &seq154, &seq157, &seq159, &seq163, &seq167, &seq169, &seq175, &seq178, &seq182, &seq185, &seq187, &seq190, &seq193, &seq196, &seq199, &seq202, &seq206, &seq209, &seq211, &seq214, &seq217, &seq220, &seq226, &seq229, &seq233, &seq234
 	}
 };
 
